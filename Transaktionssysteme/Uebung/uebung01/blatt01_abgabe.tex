@@ -1,14 +1,17 @@
-\documentclass{article}
-\usepackage[T1]{fontenc}
-\usepackage[ngerman,english]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{libertine,calc,microtype,parskip,lipsum,booktabs,textcomp,csquotes,enumerate,amssymb,vmargin,fancyhdr,fixltx2e,makeidx,listings,ellipsis,remreset,xcolor,lastpage,caption,fancybox,verbatim,amsmath}
-\usepackage{graphicx}
-\usepackage[pdftex]{hyperref}
-\usepackage{amsmath}
+%%%
+% Excercise Template
+%%%
 
-% Title
-\def\thetitle{Transaktionssyteme --- Blatt 01}
+%\listfiles 
+\documentclass[12pt]{scrartcl} 
+\usepackage[english,ngerman]{babel}
+    
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx,enumitem,wasysym,multicol,libertine,xcolor,microtype,lipsum,fixltx2e,
+	fancyhdr,vmargin,calc,lastpage,hyperref,listings,lastpage,lipsum}
+\usepackage[dot, phantomtext]{dashundergaps}
 
 % ------------------------------------------
 % -------- xcolor - (Tango)
@@ -51,55 +54,16 @@
 
 %\setmarginsrb{hleftmargini}{htopmargini}{hrightmargini}{hbottommargini}%{hheadheighti}{hheadsepi}{hfootheighti}{hfootskipi}
 \setpapersize{A4}
-\setmarginsrb{3cm}{1cm}{3cm}{1cm}{6mm}{7mm}{5mm}{15mm}
-
-% ------------------------------------------
-% -------- fancyhdr
-% ------------------------------------------
-%\fancyheadoffset[L]{\marginparsep+\marginparwidth}
-\fancyhf{}
-\fancyhead[L]{\bfseries{\nouppercase{\thetitle}}}
-\fancyhead[R]{\bfseries{Seite \thepage\ von \pageref{LastPage}}}
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0pt}
-\fancypagestyle{plain}{
-\fancyhf{}
-\fancyfoot[R]{\bfseries{Seite \thepage\ von \pageref{LastPage}}}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-}
-
-% ------------------------------------------
-% -------- hyperref
-% ------------------------------------------
-
-\hypersetup{
-	%breaklinks=true,
-	pdfborder={0 0 0},
-	bookmarks=true,         % show bookmarks bar?
-	unicode=false,          % non-Latin characters in Acrobat?s bookmarks
-	pdftoolbar=true,        % show Acrobat?s toolbar?
-	pdfmenubar=true,        % show Acrobat?s menu?
-	pdffitwindow=true,     % window fit to page when opened
-	pdfstartview={FitH},    % fits the width of the page to the window
-	pdftitle={Komplexitätstheorie Übung},    % title
-	pdfauthor={Huber Bastian},     % author
-    pdfsubject={Übungsblatt},   % subject of the document
-    pdfcreator={Huber Bastian},   % creator of the document
-    pdfproducer={Huber Bastian}, % producer of the document
-    pdfkeywords={Komplexitätstheorie, Passau}, % list of keywords
-    pdfnewwindow=true,      % links in new window
-    colorlinks=true,       % false: boxed links; true: colored links
-    linkcolor=black,          % color of internal links
-    citecolor=black,        % color of links to bibliography
-    filecolor=magenta,      % color of file links
-    urlcolor=DarkSkyBlue           % color of external links
-}
+\setmarginsrb{3cm}{1cm}{3cm}{1cm}{8mm}{4mm}{3mm}{15mm}
 
 % ------------------------------------------
 % -------- listings
 % ------------------------------------------
  
+\lstdefinestyle{inline} {
+		basicstyle=\normalsize
+		}
+
 \lstset{
 		breakautoindent=true,
 		breakindent=2em,
@@ -123,13 +87,60 @@
 		columns=fixed,
 		upquote=true,
 		extendedchars=true
+		}
+
+
+% ------------------------------------------
+% -------- hyperref
+% ------------------------------------------
+
+\hypersetup{
+	%breaklinks=true,
+	pdfborder={0 0 0},
+	bookmarks=true,         % show bookmarks bar?
+	unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+	pdftoolbar=true,        % show Acrobat’s toolbar?
+	pdfmenubar=true,        % show Acrobat’s menu?
+	pdffitwindow=true,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+	pdftitle={Bachelor Thesis - Optimizing SPARQL Queries on Behalf of the MPEG Query Format},    % title
+	pdfauthor={Daniel Watzinger},     % author
+    pdfsubject={Bachelor Thesis},   % subject of the document
+    pdfcreator={Daniel Watzinger},   % creator of the document
+    pdfproducer={Daniel Watzinger}, % producer of the document
+    pdfkeywords={Bachelor Thesis, SPARQL, MPEG Query Format, MPQF, Passau}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=DarkSkyBlue           % color of external links
 }
-\fontsize{3mm}{4mm}\selectfont
+
+% ------------------------------------------
+% -------- fancyhdr
+% ------------------------------------------
+\fancyheadoffset{\marginparsep+\marginparwidth}
+\fancyhf{}
+\fancyhead[L]{\bfseries{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\bfseries{\thepage\ of \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------------------------------------------
+% -------- pdf specific
+% ------------------------------------------
+
+\pdfcompresslevel=3
+%\pdfimageresolution=300
+%\pdfinfo{
+%/CreationDate (D:2010 09 01 00 00 00) % year(4) month(2) day(2) hour(2) minute(2) second(2)
+%/ModDate      (D:2010 09 01 00 00 00) % modification date
+%}
 
 % ------------------------------------------
 % -------- misc
 % ------------------------------------------
-\newcommand{\bibliographyname}{Bibliography}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 \clubpenalty = 10000
@@ -138,64 +149,68 @@
 \setlength\fboxsep{6pt}
 \setlength\fboxrule{1pt}
 \renewcommand*\oldstylenums[1]{{\fontfamily{fxlj}\selectfont #1}}
-%% Set table margins.
-{\renewcommand{\arraystretch}{2}
-\renewcommand{\tabcolsep}{0.4cm}}
 
 % ------------------------------------------
 % -------- hyphenation rules
 % ------------------------------------------
 \hyphenation{}
 
-\author{Bastian Huber\\(51432) \and Sebastian Rainer\\(50882) \and Daniel Watzinger\\(51746)}
-\title{\textbf{\huge{\thetitle}}\\\Large\textsc{Team Amazonen}\\\large\textsc{Gruppe ?}}
-\date{\today}
-
 \begin{document}
-
-% Specify hyphenation rules.
-\hyphenation{}
-
-\maketitle
-
 \pagestyle{fancy}
 
-\section{ACID}
-\subsection*{a)}
-\begin{description}
-  \item{Atomicy} Transaktionen sind atomar. Werden komplett oder gar nicht ausgefuehrt.
-  \item{Consitency} Wenn sich die Datenbasis vor der Ausführung der Transaktion in einem konsistenten Zustand befindet, dann muss dies auch nach der Ausführung der Transaktion gelten.
-  \item{Isolation} Die Transaktionen sind unabhängig von anderen Transaktionen. Transaktionen sehen nur konsistente Daten.
-  \item{Durability} Gemachte Änderungen von Transaktionen überdauern auch Fehler.
-\end{description}
+% -- Title
 
-\subsection*{b)}
-\begin{description}
-  \item{Atomicy} Zähler erhöhen: Holen des Zählers in eine lokale Variable. Lokale Variable erhöhen. Zurückschreiben. Falls dieses nicht atomar geschehen würde, könnte das sogenannte Lost Update Problem auftreten.
-  \item{Consitency} Geldtransfer: Falls ein Problem an der Stelle auftritt, an der das Geld vom einen Konto abgezogen aber beim anderen noch nicht addiert wurde ist das System in einem inkonsistenten Zustand. Dies darf nicht passieren.
-  \item{Isolation} Falls diese nicht gewährleistet wäre, wurden Transaktionen womöglich inkonsistente Zustande lesen, die andere Transaktionen während ihrer Ausführung erzeugen.
-  \item{Durability} Gleiches Beispiel wie bei Consitency.
-\end{description}
+\title{\LARGE Transaktionssysteme -- Blatt 01\\ \large Team Amazonen -- Gruppe 1}
+\author{\large Bastian Huber (51746) \and \large Sebastian Rainer (51746) \and \large Daniel Watzinger (51746)}
+\date{\large\today}
+\maketitle
+
+\section{Acid}
+	\begin{enumerate}[label={\alph*)}]
+		\item	\begin{description}
+						\item[Atomicity] Transaktionen sind atomar, d.h. sie werden entweder komplett oder garnicht ausgeführt.
+						\item[Consistency] Eine Transaktion überführt einen konsistenten Systemzustand in einen neuen konsistenten Zustand.
+						\item[Isolation] Parallel laufende Transaktionen beeinflussen sich nicht gegenseitig. Transaktionen arbeiten immer auf konsistenten Daten.
+						\item[Durability] Wird eine Transaktion erfolgreich ausgeführt sind ihre Effekte dauerhaft, unabhängig von Fehlern im System oder Kommunikationsnetz.
+					\end{description}
+		\item \begin{description}
+					\item[Atomicity] \textit{Umbuchung auf Konten:} Transaktion hebt Geld von einem Konto ab. Es tritt ein Fehler auf und die Transaktionsausführung bricht ab. Das System befindet sich in einem inkonsistenten Zustand.
+					\item[Consistency] Siehe \textbf{Atomicity}.
+					\item[Isolation] \textit{Lost-Update Problem:} Zwei nebenläufige Transaktionen lesen den aktuellen Kontostand. Beide Transaktionen manipulieren selbigen lokal. Beim Zurückschreiben der Änderungen verliert man die Information über eines der Updates.
+					\item[Durability] Eine Transaktion wird erfolgreich ausgeführt. Ein Fehler in der Persistenzschicht führt dazu, dass die Änderungen der Transaktion verworfen werde. Das System befindet sich nun in einem inkonsistenten Zustand.
+				\end{description}
+	\end{enumerate}
 
 \section{MySQL}
-\subsection*{a)}
-Keine Atomicy, keine Consitency, Isolation erreichbar durch Tricks, keine Durability.
-\subsection*{b)}
-Atomicy ja, Consitency ja, Isolation ja, Durability muss nicht sein.
-\subsection*{c)}
-Anfragegeschwindigkeit und Speicherplatz
-\subsection*{d)}
-Bei großen Datenmengen, bei denen kleine Fehler nichts ausmachen.
-\subsection*{e)}
-Sicherheitskritische Applikationen wie Banktransaktionen.
+	\begin{enumerate}[label={\alph*)}]
+		\item 
+			\begin{multicols}{2} 
+      \begin{itemize}[label={}]
+					\item $\Square$ \textbf{Atomicity}
+					\item $\Square$ \textbf{Consistency}
+					\item $\CheckedBox$ \textbf{Isolation} (\texttt{LOCK TABLES})
+					\item $\Square$ \textbf{Durability}
+      \end{itemize} 
+			\end{multicols}
+		\item 
+			\begin{multicols}{2} 
+      \begin{itemize}[label={}]
+					\item $\CheckedBox$ \textbf{Atomicity}
+					\item $\CheckedBox$ \textbf{Consistency}
+					\item $\CheckedBox$ \textbf{Isolation} (\texttt{LOCK TABLES})
+					\item $\Square$ \textbf{Durability}
+      \end{itemize} 
+			\end{multicols}
+		\item Performance
+		\item Bei kleinen, privaten Projekten ohne kritische Daten und Transaktionsanforderungen. Prototyping. Große Datenmengen die fehlertolerant sind.
+		\item Business-to-Business-Services. Zum Beispiel Paypal, Banktransaktionen, etc.
+	\end{enumerate}
 
 \section{Autonome Systeme}
-\subsection*{a)}
-Atomicy ist zum Beispiel über Locks implementierbar. Diese müssen aber in diesem Fall verteilte Locks sein. Dies ist nicht trivial implementierbar.
-Consistency muss auf den einzelnen Datenbanken überprüft werden. Ebenso Isolation und Durability.
-
-\subsection*{b)}
-Zentraler Server der die Locks hält. Die einzelnen Datenbanken dürfen nur kosistente Daten zur Verfügung stellen, auf die die Anwendungen zugreifen können.
+	\begin{enumerate}[label={\alph*)}]
+		\item Jedes autonome System muss die \textbf{ACID}-Eigenschaften implementieren. Zusätzlich muss eine übergeordnete Instanz die \textbf{ACID}-Eigenschaft
+			des Gesamtsystems garantieren. (Beispiel \textbf{Durability}: Das Gesamtsystem darf die Transaktion nur erfolgreich beenden, falls jedes Subsystem den (Speicher) Erfolg bestätigt hat.)
+		 \item Siehe oben. Übergeordnete Instanz die für die \textbf{ACID}-Eigenschaft des Gesamtsystems sorgt. (Problem: \textbf{Single Point of Failure})
+	\end{enumerate}
 
 \end{document}
-
