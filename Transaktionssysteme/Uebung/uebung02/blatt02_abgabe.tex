@@ -188,9 +188,32 @@ H_S(w_1 (x)) := f_1^x( H_S(r_1 (x)) ) = f_1^x( f_0^x() )
 $
 \section{Final-State-Äquivalenz}
 \subsection*{a)}
+$
+H_S(w_0 (x)) := f_0^x() \\
+H_S(w_0 (y)) := f_0^y() \\
+H_S(w_0 (z)) := f_0^z() \\
+H_S(r_1 (x)) := H_S( w_0(x) ) = f_0^x() \\
+H_S(r_2 (x)) := H_S( w_0(x) ) = f_0^x() \\
+H_S(w_2 (y)) := f_2^y( H_S(r_2 (x)) ) = f_2^y( f_0^x() ) \\
+H_S(r_3 (x)) := H_S(w_0 (x)) = f_0^x() \\
+H_S(r_2 (z)) := H_S(w_0 (z)) = f_0^z() \\
+H_S(w_3 (z)) := f_3^z( H_S(r_3 (x)) ) = f_3^z( f_0^x() ) \\
+H_S(w_2 (z)) := f_2^z( H_S(r_2 (z)), H_S(r_2 (x)) ) = f_2^z( f_0^z(), f_0^x() ) \\
+$
 \subsection*{b)}
+$
+H_S[S](x) = H_S(w_0 (x)) = f_0^x() \\
+H_S[S](y) = H_S(w_2 (y)) = f_2^y( f_0^x() ) \\
+H_S[S](z) = H_S(w_2 (z)) = f_2^z( f_0^z(), f_0^x() ) \\
+$
 \subsection*{c)}
+$
+S' := w_0(x) w_0(y) w_0(z) r_2(x) w_2(y) r_2(z) w_2(z)
+$
 \subsection*{d)}
+Nein da die Anzahl von Operationssymbolen von $S$ und $S'$ nicht übereinstimmt.
+
+
 \section{Final-State-Serialisierbarkeit und View-Serialisierbarkeit}
 \subsection*{a)}
 \subsection*{b)}
