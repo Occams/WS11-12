@@ -165,7 +165,36 @@
 \maketitle
 
 \section{Herbrand-Semantik}
+\subsection*{a)}
+$
+H_S(r_1 (y)) := H_S(w_0 (y)) = f_0^y() \\
+H_S(r_2 (y)) := H_S(w_0 (y)) = f_0^y() \\
+H_S(w_1 (y)) := f_1^y ( H_S(r_1 (y)) ) = f_1^y ( f_0^y() ) \\
+H_S(r_3 (z)) := H_S( w_0(y) ) = f_0^y() \\
+H_S(w_3 (z)) := f_3^z( H_S(r_3(z)) ) = f_3^z( f_0^y() ) \\
+H_S(r_2 (x)) := H_S( w_0(x) ) = f_0^x() \\
+H_S(w_2 (x)) := f_2^x( H_S(r_2 (x)), H_S(r_2 (y)) ) = f_2^x( f_0^x(),f_0^y() ) \\
+H_S(w_1 (x)) := f_1^x( H_S(r_1 (y)) ) = f_1^x( f_0^y() )
+$
+\subsection*{b)}
+$
+H_S(r_3 (z)) := H_S( w_0(z) ) = f_0^z() \\
+H_S(w_3 (z)) := f_3^z( H_S(r_3 (z)) ) = f_3^z( f_0^z() ) \\
+H_S(r_2 (y)) := H_S( w_0(y) ) = f_0^y() \\
+H_S(r_2 (x)) := H_S( w_0(x) ) = f_0^x() \\
+H_S(w_2 (y)) := f_2^y( H_S(r_2 (y)), H_S(r_2 (x)) ) = f_2^y( f_0^y(), f_0^x()  )  \\
+H_S(r_1 (x)) := H_S( w_0(x) ) = f_0^x() \\
+H_S(w_1 (x)) := f_1^x( H_S(r_1 (x)) ) = f_1^x( f_0^x() )
+$
 \section{Final-State-Äquivalenz}
+\subsection*{a)}
+\subsection*{b)}
+\subsection*{c)}
+\subsection*{d)}
 \section{Final-State-Serialisierbarkeit und View-Serialisierbarkeit}
+\subsection*{a)}
+\subsection*{b)}
+\subsection*{c)}
+\subsection*{d)}
 \section{Inconsistent Read in DB2 und PostgreSQL}
 \end{document}
