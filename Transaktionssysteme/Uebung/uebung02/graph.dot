@@ -1,0 +1,6 @@
+digraph G {
+    node [shape=circle];
+    w_0(x) -> r_1(x) -> w_1(z)
+		w_0(y) -> r_2(y) -> w_2(x) -> r_3(x)
+		w_0(z) -> r_3(z) -> w_3(z)
+}
