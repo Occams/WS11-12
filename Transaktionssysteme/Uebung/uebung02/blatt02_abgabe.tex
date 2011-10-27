@@ -160,7 +160,7 @@
 % -- Title
 
 \title{\LARGE Transaktionssysteme -- Blatt 02\\ \large Team Amazonen -- Gruppe 1}
-\author{\large Bastian Huber (51746) \and \large Sebastian Rainer (51746) \and \large Daniel Watzinger (51746)}
+\author{\large Bastian Huber (51432) \and \large Sebastian Rainer (50882) \and \large Daniel Watzinger (51746)}
 \date{\large\today}
 \maketitle
 
@@ -169,22 +169,28 @@
 $
 H_S(r_1 (y)) := H_S(w_0 (y)) = f_0^y() \\
 H_S(r_2 (y)) := H_S(w_0 (y)) = f_0^y() \\
-H_S(w_1 (y)) := f_1^y ( H_S(r_1 (y)) ) = f_1^y ( f_0^y() ) \\
-H_S(r_3 (z)) := H_S( w_0(y) ) = f_0^y() \\
-H_S(w_3 (z)) := f_3^z( H_S(r_3(z)) ) = f_3^z( f_0^y() ) \\
+H_S(w_1 (y)) := f_1^y ( H_S(r_1 (y)) ) = f_1^y ( f_0^y() ) = f_0^y() + 1\\
+H_S(r_3 (z)) := H_S( w_0(z) ) = f_0^z() \\
+H_S(w_3 (z)) := f_3^z( H_S(r_3(z)) ) = f_3^z( f_0^z() ) = f_0^z() + 1\\
 H_S(r_2 (x)) := H_S( w_0(x) ) = f_0^x() \\
-H_S(w_2 (x)) := f_2^x( H_S(r_2 (x)), H_S(r_2 (y)) ) = f_2^x( f_0^x(),f_0^y() ) \\
-H_S(w_1 (x)) := f_1^x( H_S(r_1 (y)) ) = f_1^x( f_0^y() )
+H_S(w_2 (x)) := f_2^x( H_S(r_2 (x)), H_S(r_2 (y)) ) = f_2^x( f_0^x(),f_0^y() ) = f_0^x() * f_0^y()\\
+H_S(w_1 (x)) := f_1^x( H_S(r_1 (y)) ) = f_1^x( f_0^y() ) = f_0^y() + 1 \\ \\
+H_S[S](x) = H_S(w_1 (x)) = f_0^y() + 1 \\
+H_S[S](y) = H_S(w_1 (y)) = f_0^y() + 1 \\
+H_S[S](z) = H_S(w_3 (z)) = f_0^z() + 1 \\
 $
 \subsection*{b)}
 $
 H_S(r_3 (z)) := H_S( w_0(z) ) = f_0^z() \\
-H_S(w_3 (z)) := f_3^z( H_S(r_3 (z)) ) = f_3^z( f_0^z() ) \\
+H_S(w_3 (z)) := f_3^z( H_S(r_3 (z)) ) = f_3^z( f_0^z() ) = f_0^z() + 1\\
 H_S(r_2 (y)) := H_S( w_0(y) ) = f_0^y() \\
 H_S(r_2 (x)) := H_S( w_0(x) ) = f_0^x() \\
-H_S(w_2 (y)) := f_2^y( H_S(r_2 (y)), H_S(r_2 (x)) ) = f_2^y( f_0^y(), f_0^x()  )  \\
+H_S(w_2 (y)) := f_2^y( H_S(r_2 (y)), H_S(r_2 (x)) ) = f_2^y( f_0^y(), f_0^x()  ) = f_0^y() *  f_0^x()\\
 H_S(r_1 (x)) := H_S( w_0(x) ) = f_0^x() \\
-H_S(w_1 (x)) := f_1^x( H_S(r_1 (x)) ) = f_1^x( f_0^x() )
+H_S(w_1 (x)) := f_1^x( H_S(r_1 (x)) ) = f_1^x( f_0^x() ) = f_0^x() + 1 \\ \\
+H_S[S](x) = H_S(w_1 (x)) = f_0^x() + 1 \\
+H_S[S](y) = H_S(w_2 (y)) = f_0^y() *  f_0^x()\\
+H_S[S](z) = H_S(w_2 (z)) = f_0^z() + 1 \\
 $
 \section{Final-State-Äquivalenz}
 \subsection*{a)}
@@ -211,13 +217,165 @@ $
 S' := w_0(x) w_0(y) w_0(z) r_2(x) w_2(y) r_2(z) w_2(z)
 $
 \subsection*{d)}
-Nein da die Anzahl von Operationssymbolen von $S$ und $S'$ nicht übereinstimmt.
+Es gilt zwar $H_S[S]$ = $H_S[S']$, aber op(S) $\neq$ op(S'). Somit sind S und S' nicht final state äquivalent.
 
 
 \section{Final-State-Serialisierbarkeit und View-Serialisierbarkeit}
 \subsection*{a)}
+$
+H_S(r_1 (x)) := H_S( w_0(x) ) = f_0^x() \\
+H_S(r_2 (y)) := H_S( w_0(y) ) = f_0^y() \\
+H_S(w_2 (x)) := f_2^x( H_S(r_2 (y)) ) = f_2^x( f_0^y() )\\
+H_S(r_3 (x)) := H_S( w_2(x) ) = f_2^x( f_0^y() ) \\
+H_S(r_3 (z)) := H_S( w_0(z) ) = f_0^z() \\
+H_S(w_3 (z)) := f_3^z( H_S(r_3 (z)) , H_S(r_3 (x)) ) = f_3^z( f_0^z() , f_2^x( f_0^y() ) ) \\
+H_S(w_1 (z)) := f_1^z( H_S(r_1 (x)) ) = f_1^z( f_0^x() ) \\
+$
 \subsection*{b)}
+
+Liest - Von - Relation: 
+
+$$
+RF(S) = \{ (T_0 , x , T_1) , (T_0 , y , T_2) , (T_2 , x , T_3) , (T_0 , z , T_3) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\} 
+$$
+
+Nützlich - Relation: 
+
+$
+w_0(x) \rightarrow r_1(x) \\
+w_0(y) \rightarrow r_2(y) \\
+w_2(x) \rightarrow r_3(x) \\
+w_0(z) \rightarrow r_3(z) \\
+w_2(x) \rightarrow r_\infty(x) \\
+w_0(y) \rightarrow r_\infty(y) \\
+w_1(z) \rightarrow r_\infty(z) \\
+r_2(y) \rightarrow w_2(x) \\
+r_3(x) \rightarrow w_3(z) \\
+r_3(z) \rightarrow w_3(z) \\
+r_1(x) \rightarrow w_1(z) \\ 
+$
+
+Lebendige Schritte: 
+
+$$
+w_1(z) , w_2(x) , w_0(y) , r_2(y) , r_1(x) , w_0(x) 
+$$
+
+Lebendige Liest - Von - Relation: 
+
+$$
+LRF(S) = \{ (T_0 , x , T_1) , (T_0 , y , T_2) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\} \\ 
+$$
+
 \subsection*{c)}
+$
+S' = r_3(x) r_3(z) w_3(z) r_1(x) w_1(z) r_2(y) w_2(x)
+$
+
+Liest - Von - Relation:
+
+$$
+RF(S') = \{ (T_0 , x , T_3) , (T_0 , z , T_3) , (T_0 , x , T_1) , (T_0 , y , T_2) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\}
+$$
+
+Nützlich - Relation:
+
+$
+w_0(x) \rightarrow r_3(x) \\
+w_0(z) \rightarrow r_3(z) \\
+w_0(x) \rightarrow r_1(x) \\
+w_0(y) \rightarrow r_2(y) \\
+w_2(x) \rightarrow r_\infty(x) \\
+w_0(y) \rightarrow r_\infty(y) \\
+w_1(z) \rightarrow r_\infty(z) \\
+r_2(y) \rightarrow w_2(x) \\
+r_3(x) \rightarrow w_3(z) \\
+r_3(z) \rightarrow w_3(z) \\
+r_1(x) \rightarrow w_1(z) \\
+$
+
+Lebendige Schritte:
+
+$$
+w_1(z) , w_2(x) , w_0(y) , r_2(y) , r_1(x) , w_0(x)
+$$
+
+Lebendige Liest - Von - Relation:
+
+$$
+LRF(S') = \{ (T_0 , x , T_1) , (T_0 , y , T_2) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\}
+$$
 \subsection*{d)}
+S $\in$ FSR , da mit S' ein serieller Schedule besteht, für den gilt: $$op(S) = op(S')$$ und $$LRF(S) = LRF(S')$$
+
+S $\not\in$ VSR , da es keinen seriellen Schedule gibt mit $$op(S) = op(S')$$ und $$RF(S) = RF(S')$$ Dazu müssen alle möglichen seriellen Schedules getestet werden. 
+
+$$
+S_1 = T_3 T_1 T_2
+$$
+
+Liest - Von - Relation:
+
+$
+RF(S_1) = \{ (T_0 , x , T_3) , (T_0 , z , T_3) , (T_0 , x , T_1) , (T_0 , y , T_2) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\} \\ 
+RF(S) \neq RF(S_1)
+$
+
+$$
+S_2 = T_1 T_2 T_3
+$$
+
+Liest - Von - Relation:
+
+$
+RF(S_2) = \{ (T_0 , x , T_1) , (T_0 , y , T_2) , (T_2 , x , T_3) , (T_1 , z , T_3) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_3 , z , T_\infty)\} \\
+RF(S) \neq RF(S_2)
+$
+
+$$
+S_3 = T_1 T_3 T_2
+$$
+
+Liest - Von - Relation:
+
+$
+RF(S_3) = \{ (T_0 , x , T_1) , (T_0 , x , T_3) , (T_1 , z , T_3) , (T_0 , y , T_2) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_3 , z , T_\infty)\} \\
+RF(S) \neq RF(S_3)
+$
+
+$$
+S_4 = T_3 T_2 T_1
+$$
+
+Liest - Von - Relation:
+
+$
+RF(S_4) = \{ (T_0 , x , T_3) , (T_0 , z , T_3) , (T_0 , y , T_2) , (T_2 , x , T_1) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\} \\
+RF(S) \neq RF(S_4)
+$
+
+$$
+S_5 = T_2 T_1 T_3
+$$
+
+Liest - Von - Relation:
+
+$
+RF(S_5) = \{ (T_0 , y , T_2) , (T_2 , x , T_1) , (T_1 , x , T_3) , (T_1 , z , T_3) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_3 , z , T_\infty)\} \\ 
+RF(S) \neq RF(S_5)
+$
+
+$$
+S_6 = T_2 T_3 T_1
+$$
+
+Liest - Von - Relation:
+
+$
+RF(S_6) = \{ (T_0 , y , T_2) , (T_2 , x , T_3) , (T_0 , z , T_3) , (T_2 , x , T_1) , (T_2 , x , T_\infty) , (T_0 , y , T_\infty) , (T_1 , z , T_\infty)\} \\
+RF(S) \neq RF(S_6)
+$
+
+Somit wurden alle möglichen seriellen Schedules $S_i$ getestet und es ist bewiesen, dass S $\not\in$ VSR.
 \section{Inconsistent Read in DB2 und PostgreSQL}
 \end{document}
