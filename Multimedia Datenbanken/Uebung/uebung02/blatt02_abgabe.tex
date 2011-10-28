@@ -87,7 +87,7 @@
     pdfsubject={Ãœbungsblatt},   % subject of the document
     pdfcreator={Huber Bastian},   % creator of the document
     pdfproducer={Huber Bastian}, % producer of the document
-    pdfkeywords={KomplexitÃ¤tstheorie, Passau}, % list of keywords
+    pdfkeywords={Komplexitätstheorie, Passau}, % list of keywords
     pdfnewwindow=true,      % links in new window
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=black,          % color of internal links
@@ -183,35 +183,85 @@
 Gegeben sei folgender Ausschnitt eines konzeptuellen Schemas zur Verwaltung von Fussball
 meisterschaften:
 Bilden Sie diesen Schemaausschnitt auf ein logisches objektrelationales Datenbankschema in
-Oracle ab1 . Die Methoden mÃ¼ssen dabei NICHT implementiert werden! LÃ¶sen Sie dabei fol
+Oracle ab1 . Die Methoden müssen dabei NICHT implementiert werden! Lösen Sie dabei fol
 gende Teilaufgaben:}
 
 \subsection{a)}
 \textit{
-	Definition von Objekttypen. Hierbei sind folgende Vorgaben zu berÃ¼cksichtigen:
+	Definition von Objekttypen. Hierbei sind folgende Vorgaben zu berücksichtigen:
 	\begin{itemize}
 		\item Die Pfeile bei den Assoziationen geben die Navigationsrichtung an.
-		\item SÃ¤mtliche Infos zu einer Teamaufstellung werden in einer eingebetteten Tabelle abgelegt. Die entsprechenden Spieler werden dabei referenziert.
+		\item Sämtliche Infos zu einer Teamaufstellung werden in einer eingebetteten Tabelle abgelegt. Die entsprechenden Spieler werden dabei referenziert.
 		\item Die Teamzuordnungen eines Spielers werden ebenfalls in einer eingebetteten Tabelle abgelegt. Die entsprechenden Teams werden referenziert.
 		\item Die Klasse Teilnehmer ist als abstrakte Klasse zu realisieren, da ihre Instanzmethode
 	anzahlEinsaetze abstrakt ist.
 		\item Das Attribut Position der Assoziationsklasse Aufstellungsinfo kann folgende Werte
 	annehmen: T = Torwart, V = Verteidigung, M = Mittelfeld, S = Sturm.
-		\item Die restlichen Assoziationen sind unter Verwendung von Referenztypen aufzuÃ¤hlen.
+		\item Die restlichen Assoziationen sind unter Verwendung von Referenztypen aufzuählen.
 	\end{itemize}
 }
+
+\lstset{language=SQL}
+\begin{lstlisting}[]
+
+CREATE TYPE teilnehmer AS OBJECT (
+  idno		NUMBER,
+  vorname	VARCHAR(255),
+  zuname	VARCHAR(255),
+  geburtstag	DATE
+) NOT INSTANTIABLE NOT FINAL;
+
+CREATE_TYPE spieler_list AS TABLE OF REF spieler_typ;
+CREATE TYPE spieler_typ UNDER teilnehmer (
+  teams		team_list,  -- TODO: Unique (spieler, team) ausserdem hab ich 
+			    -- das mit der teamzurodnung aus dem uml nicht verstanden
+  aufstellungen	team_aufstellung_list
+);
+
+CREATE_TYPE team_list AS TABLE OF REF team_typ;
+CREATE TYPE team_typ AS OBJECT (
+  idno		NUMBER,
+  name		VARCHAR(255),
+  aufstellungen team_aufstellung_list
+);
+
+CREATE TYPE aufstellungsinfos_typ AS TABLE OF aufstellungsinfo_typ;
+CREATE TYPE aufstellungsinfo_typ AS OBJECT (
+  idno		NUMBER,
+  position	VARCHAR2(1) CHECK( position IN ('T','V','M','S') ),
+  spieler	aufstellungsinfos_typ
+);
+
+CREATE TYPE team_aufstellung_list AS TABLE OF REF team_aufstellung_typ;
+CREATE TYPE team_aufstellung_typ AS OBJECT (
+  idno		NUMBER,
+  spieler	aufstellungsinfo_typ,
+  team		REF team_typ,
+  spiele	spiel_list
+);
+
+CREATE TYPE spiel_list AS TABLE OF REF spiel_typ;
+CREATE TYPE spiel_typ AS OBJECT (
+  idno		NUMBER,
+  datum		DATE,
+  heimtore	NUMBER,
+  auswärtstore	NUMBER,
+  home		REF team_aufstellung_typ,
+  guest		REF team_aufstellung_typ
+);
+\end{lstlisting}
 \subsection{b)}
 \textit{
-Definition von Objekttabellen. FÃ¼r jeden Objekttyp, der nicht eine eingebettete Tabelle,
-ein Array variabler LÃ¤nge oder ein eingebettetes Objekt darstellt, ist eine entsprechende
-Objekttabelle zu definieren. Dabei sind SchlÃ¼sseleigenschaften, NOT-NULL Werte und
-referentielle IntegritÃ¤ten von Attributen zu gewÃ¤hrleisten.}
+Definition von Objekttabellen. Für jeden Objekttyp, der nicht eine eingebettete Tabelle,
+ein Array variabler Länge oder ein eingebettetes Objekt darstellt, ist eine entsprechende
+Objekttabelle zu definieren. Dabei sind Schlüsseleigenschaften, NOT-NULL Werte und
+referentielle Integritäten von Attributen zu gewährleisten.}
 
 
 \section{DML-Operationen auf Objekttabellen}
 \textit{
 	\begin{itemize}
-		\item FÃ¼gen Sie in jeden Objektcontainer je nach Bedarf ein bis vier Beispielsobjekte ein.
+		\item Fügen Sie in jeden Objektcontainer je nach Bedarf ein bis vier Beispielsobjekte ein.
 		\item Aktualisieren Sie eine Aufstellungsinfo einer gegebenen Teamaufstellung.
 	\end{itemize}
 }
