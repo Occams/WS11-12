@@ -375,5 +375,6 @@ Somit wurden alle möglichen seriellen Schedules $S_i$ getestet und es ist bewies
 			$T_1$ erfolgreich \texttt{Commit;} ausführt oder abgebrochen wird.
 		\item \textbf{PostgreSQL:} Dieses \textbf{DBMS} isoliert beide Transaktionen. Die Änderungen von nicht abgeschlossenen Transaktionen können nicht von anderen Transaktionen gelesen werden. Außerdem
 			behalten bereits laufende Transaktionen ihre \textbf{Sicht} auf den Systemzustand der zu Beginn der Transaktion bestand.
+			\item Der Unterschied in dem hier behandelten Beispiel besteht darin, dass der Lesezugriff von Transaktion $T_2$ blockiert wird, wohingegen in PostgreSQL der Lesezugriff von $T_2$ auf den noch konsistenten Daten stattfindet.
 	\end{enumerate}
 \end{document}
