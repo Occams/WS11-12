@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman,english]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
 \usepackage{libertine,calc,microtype,parskip,lipsum,booktabs,textcomp,csquotes,enumerate,amssymb,vmargin,fancyhdr,fixltx2e,makeidx,listings,ellipsis,remreset,xcolor,lastpage,caption,fancybox,verbatim,amsmath}
 \usepackage{graphicx}
 \usepackage[pdftex]{hyperref}
@@ -160,27 +160,22 @@
 
 \pagestyle{fancy}
 
-\section{Unterschied relationaler und objekt-relationaler Datenbanken}
-\textit{
-Skizzieren Sie die Hauptunterschiede zwischen relationalen und objekt-relationalen Datenbank-
-systemen. Gehen Sie hier insbesondere auf die KomplexitÃ¤t der verwendeten Datenstrukturen,
-deren Indizierung, den AnfrageprÃ¤dikaten und die jeweiligen Vor- und Nachteile der beiden
-Systeme ein.}
-
-\section{BegriffsklÃ¤rung}
-\textit{
-ErklÃ¤ren Sie die folgenden Begriffe in objekt-relationalen Datenbanken und geben Sie jeweils
-ein kleines Beispiel an:}
+\section{Aufgabe 1}
 \begin{description}
-	\item[Benutzer definierter Datentyp]
-	\item[Vererbung]
-	\item[Objekttabelle]
-	\item[Polymorphismus]
-	\item[Collections]
-	\item[Dot-Operator]
-	\item[OID]
-	\item[REF und DEREF]
-	\item[Beziehungen zwischen benutzer-definierten Datentypen (1:n, 1:1)]
+	\item[relational] Alle Informationen werden in Tabellen gespeichert. Dabei werden nur einfache Datentypen verwendet. Die Zeilen der Tabellen bestehen aus Tupeln. Die Struktur liegt in den Tabellen
+	\item[objekt - relational] Alle Informationen werden in Tabellen mit komplexen Datentypen gespeichert. Diese Typen werden vom Benutzer erzeugt. Objekte sind Ausprägungen dieser Typen. Tabellen können solche Objekte speichern. Die Struktur liegt in den Typen.
+\end{description}
+\section{Aufgabe 2}
+\begin{description}
+	\item[Benutzer definierter Datentyp] Datentyp, der vom Benutzer angelegt wird und bestimmte Informationen zusammenfasst und kapselt (Vergleiche Klassen in der Objektorientierung).
+	\item[Vererbung] Ein Typ, der eine Spezialisierung eines Obertyps darstellt. Er erbt alle Attribute und Methoden.
+	\item[Objekttabelle] Tabelle mit Objekten als Zeilen (im Gegensatz zur Tabellen mit Tupeln als Zeilen in relationalen Datenbanken).
+	\item[Polymorphismus] Überschreibung von Methoden in der Typvererbung.
+	\item[Collections] Menge von Objekten desselben Typs.
+	\item[Dot-Operator] Zugriff auf Attribute in Objekttabellen über diesen Operator (z.B. a.thema.id ,  wobei thema ein Typ ist und id ein Attribut von thema).
+	\item[OID] Object Identifier, ein systemweit eindeutiger Schlüssel für Objekte.
+	\item[REF und DEREF] Referenzen auf Objekte. Damit werden nicht die Objekte mit ihren Attributen als ganzes in den Tabellen gespeichert, sondern nur die Referenz auf das Objekt.
+	\item[Beziehungen zwischen benutzer-definierten Datentypen (1:n, 1:1)] Beziehung zwischen Datentypen, die in einem ER oder UML Diagramm angegeben werden können (z.B. ein Auto hat mehrere Reifen, aber nur ein Farbe).
 \end{description}
 
 \section{Logisches objektrelationales DB-Schema}
