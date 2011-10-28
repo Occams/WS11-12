@@ -1,6 +1,11 @@
 digraph G {
-    node [shape=circle];
-    w_0(x) -> r_1(x) -> w_1(z)
-		w_0(y) -> r_2(y) -> w_2(x) -> r_3(x)
-		w_0(z) -> r_3(z) -> w_3(z)
+	graph [ranksep=0.4, nodesep=0.1,rankdir=LR]
+  node [shape=circle,fontsize=10];
+	{rank="same"; "w_0(x)";"w_0(y)"}
+	"w_0(x)"->"r_1(x)"->"w_1(z)"->"r_\\infty(z)" 
+	"w_0(y)"->"r_2(y)" -> "w_2(x)" -> "r_\\infty(x)"
+	"w_0(y)"->"r_\\infty(y)"
+	"w_0(z)" -> "r_3(z)" -> "w_3(z)"
+	"w_2(x)" -> "r_3(x)" -> "w_3(z)"
+	subgraph cluster_0 {"w_0(z)"; "r_3(z)"; "w_3(z)";"r_3(x)";color=red; style=solid}
 }
