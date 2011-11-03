@@ -1,0 +1,295 @@
+%%%
+% Excercise Template
+%%%
+
+%\listfiles 
+\documentclass[12pt]{scrartcl} 
+\usepackage[english,ngerman]{babel}
+    
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx,enumitem,wasysym,multicol,libertine,xcolor,microtype,lipsum,fixltx2e,
+	fancyhdr,vmargin,calc,lastpage,hyperref,listings,lastpage,lipsum,preview,tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+
+
+% ------------------------------------------
+% -------- xcolor - (Tango)
+% ------------------------------------------
+
+\definecolor{LightButter}{rgb}{0.98,0.91,0.31}
+\definecolor{LightOrange}{rgb}{0.98,0.68,0.24}
+\definecolor{LightChocolate}{rgb}{0.91,0.72,0.43}
+\definecolor{LightChameleon}{rgb}{0.54,0.88,0.20}
+\definecolor{LightSkyBlue}{rgb}{0.45,0.62,0.81}
+\definecolor{LightPlum}{rgb}{0.68,0.50,0.66}
+\definecolor{LightScarletRed}{rgb}{0.93,0.16,0.16}
+\definecolor{Butter}{rgb}{0.93,0.86,0.25}
+\definecolor{Orange}{rgb}{0.96,0.47,0.00}
+\definecolor{Chocolate}{rgb}{0.75,0.49,0.07}
+\definecolor{Chameleon}{rgb}{0.45,0.82,0.09}
+\definecolor{SkyBlue}{rgb}{0.20,0.39,0.64}
+\definecolor{Plum}{rgb}{0.46,0.31,0.48}
+\definecolor{ScarletRed}{rgb}{0.80,0.00,0.00}
+\definecolor{DarkButter}{rgb}{0.77,0.62,0.00}
+\definecolor{DarkOrange}{rgb}{0.80,0.36,0.00}
+\definecolor{DarkChocolate}{rgb}{0.56,0.35,0.01}
+\definecolor{DarkChameleon}{rgb}{0.30,0.60,0.02}
+\definecolor{DarkSkyBlue}{rgb}{0.12,0.29,0.53}
+\definecolor{DarkPlum}{rgb}{0.36,0.21,0.40}
+\definecolor{DarkScarletRed}{rgb}{0.64,0.00,0.00}
+\definecolor{Aluminium1}{rgb}{0.93,0.93,0.92}
+\definecolor{Aluminium2}{rgb}{0.82,0.84,0.81}
+\definecolor{Aluminium3}{rgb}{0.73,0.74,0.71}
+\definecolor{Aluminium4}{rgb}{0.53,0.54,0.52}
+\definecolor{Aluminium5}{rgb}{0.33,0.34,0.32}
+\definecolor{Aluminium6}{rgb}{0.18,0.20,0.21}
+\definecolor{Brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+
+% ------------------------------------------
+% -------- vmargin
+% ------------------------------------------
+
+%\setmarginsrb{hleftmargini}{htopmargini}{hrightmargini}{hbottommargini}%{hheadheighti}{hheadsepi}{hfootheighti}{hfootskipi}
+\setpapersize{A4}
+\setmarginsrb{3cm}{1cm}{3cm}{1cm}{8mm}{4mm}{3mm}{15mm}
+
+% ------------------------------------------
+% -------- listings
+% ------------------------------------------
+ 
+\lstdefinestyle{inline} {
+		basicstyle=\normalsize
+		}
+
+\lstset{
+		breakautoindent=true,
+		breakindent=2em,
+		breaklines=true,
+		tabsize=4,
+		frame=blrt,
+		frameround=tttt,
+		captionpos=b,
+		basicstyle=\scriptsize\ttfamily,
+		keywordstyle={\color{SkyBlue}},
+		%commentstyle={\color{OliveGreen}},
+		stringstyle={\color{OliveGreen}},
+		showspaces=false,
+		%numbers=right,
+		%numberstyle=\scriptsize,
+		%stepnumber=1, 
+		%numbersep=5pt,
+		%showtabs=false
+		prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+		aboveskip={1.5\baselineskip},
+		columns=fixed,
+		upquote=true,
+		extendedchars=true
+		}
+
+
+% ------------------------------------------
+% -------- hyperref
+% ------------------------------------------
+
+\hypersetup{
+	%breaklinks=true,
+	pdfborder={0 0 0},
+	bookmarks=true,         % show bookmarks bar?
+	unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+	pdftoolbar=true,        % show Acrobat’s toolbar?
+	pdfmenubar=true,        % show Acrobat’s menu?
+	pdffitwindow=true,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=DarkSkyBlue           % color of external links
+}
+
+% ------------------------------------------
+% -------- fancyhdr
+% ------------------------------------------
+\fancyheadoffset{\marginparsep+\marginparwidth}
+\fancyhf{}
+\fancyhead[L]{\bfseries{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\bfseries{\thepage\ of \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------------------------------------------
+% -------- pdf specific
+% ------------------------------------------
+
+\pdfcompresslevel=3
+%\pdfimageresolution=300
+%\pdfinfo{
+%/CreationDate (D:2010 09 01 00 00 00) % year(4) month(2) day(2) hour(2) minute(2) second(2)
+%/ModDate      (D:2010 09 01 00 00 00) % modification date
+%}
+
+% ------------------------------------------
+% -------- misc
+% ------------------------------------------
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+\setlength\fboxsep{6pt}
+\setlength\fboxrule{1pt}
+\renewcommand*\oldstylenums[1]{{\fontfamily{fxlj}\selectfont #1}}
+
+% ------------------------------------------
+% -------- hyphenation rules
+% ------------------------------------------
+\hyphenation{}
+
+\begin{document}
+\pagestyle{fancy}
+
+% -- Title
+
+\title{\LARGE Transaktionssysteme -- Blatt 03\\ \large Team Amazonen -- Gruppe 1}
+\author{\large Bastian Huber (51432) \and \large Sebastian Rainer (50882) \and \large Daniel Watzinger (51746)}
+\date{\large\today}
+\maketitle
+
+\section{FSR, VSR, CSR}
+Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w_3(y)c_3$
+	\begin{enumerate}[label={\alph*)}]
+		\item 
+		
+		Liest - Von - Relation: 
+
+			$
+			RF(S) = \{ (T_0 , z , T_1) , (T_0 , x , T_3) , (T_0 , z , T_2) , (T_0 , x , T_\infty) , (T_3 , y , T_\infty) , (T_2 , z , T_\infty)\} 
+			$
+
+			Nützlich - Relation: 
+
+			$
+			w_0(z) \rightarrow r_1(z) \\
+			w_0(z) \rightarrow r_2(z) \\
+			w_0(x) \rightarrow r_3(x) \\
+			w_0(x) \rightarrow r_\infty(x) \\
+			w_3(y) \rightarrow r_\infty(y) \\
+			w_2(z) \rightarrow r_\infty(z) \\
+			r_1(z) \rightarrow w_1(z) \\
+			r_1(z) \rightarrow w_1(y) \\
+			r_2(z) \rightarrow w_2(y) \\
+			r_2(z) \rightarrow w_2(z) \\ 
+			r_3(x) \rightarrow w_3(y) \\
+			$
+
+			Lebendige Schritte: 
+
+			$
+			w_3(y) , w_2(z) , w_0(z) , w_0(x) , r_3(x) , r_2(z) , r_\infty(x) , r_\infty(y) , r_\infty(z)
+			$
+
+			Lebendige Liest - Von - Relation: 
+
+			$
+			LRF(S) = \{ (T_0 , x , T_3) , (T_0 , z , T_2) , (T_0 , x , T_\infty) , (T_3 , y , T_\infty) , (T_2 , z , T_\infty)\} \\ 
+			$
+			
+			\item
+				$
+			conf(S) = \{ (r_1(z) , w_2(z)) , (r_2(z) , w_1(z)) , (w_1(z) , w_2(z)) , (w_1(y) , w_2(y)) ,\\ (w_1(y) , w_3(y)) , (w_2(y) , w_3(y))\} \\ 
+			$
+			
+			\item
+			Der Konfliktgraph ist azyklisch, somit ist $S \in CSR$. Da $CSR \subset VSR \subset FSR$ gilt, ist $S \in VSR$ und $S \in FSR$.
+			
+	\end{enumerate}
+	
+\section{FSR,VSR,CSR,COCSR}
+Gegeben sei der Schedule $S := r_1(x)r_3(z)w_1(y)r_2(y)w_1(x)r_3(x)w_3(z)w_2(z)w_3(x)$
+	\begin{enumerate}[label={\alph*)}]
+
+		\item 
+			$H_{S} (r_{1}(x)) = H_{S} (w_{0}(x)) = f_{0}^{x}()$\\
+			$H_{S} (r_{3}(z)) = H_{S} (w_{0}(z)) = f_{0}^{z}()$\\
+			$H_{S} (w_{1}(y)) = f_{1}^{y}(H_{S} (r_{1}(x))) = f_{1}^{y}(f_{0}^{x}())$\\
+			$H_{S} (r_{2}(y)) = H_{S} (w_{1}(y)) = f_{1}^{y}(f_{0}^{x}())$\\
+			$H_{S} (w_{1}(x)) = f_{1}^{x}(H_{S} (r_{1}(x))) = f_{1}^{x}(f_{0}^{x}())$\\
+			$H_{S} (r_{3}(x)) = H_{S} (w_{1}(x)) = f_{1}^{x}(f_{0}^{x}())$\\
+			$H_{S} (w_{3}(z)) = f_{3}^{z}(H_{S} (r_{3}(z)) , H_{S} (r_{3}(x)) ) = f_{3}^{z}(f_{0}^{z}(),f_{1}^{x}(f_0^{x}()))$\\
+			$H_{S} (w_{2}(z)) = f_{2}^{z}(H_{S} (r_{2}(y))) = f_{2}^{y}(f_{1}^{y}(f_0^{x}()))$\\
+			$H_{S} (w_{3}(x)) = f_{3}^{x}(H_{S} (r_{3}(x)),H_{S} (r_{3}(z))) = f_{3}^{x}(f_{1}^{x}(f_0^{x}()),f_{0}^{z}())$\\[0.5cm]
+			$H_S[S](x) = H_S(w_3 (x)) = f_{3}^{x}(f_{1}^{x}(f_0^{x}()),f_{0}^{z}())$\\
+			
+			\item
+			
+				Liest - Von - Relation: 
+
+			$
+			RF(S) = \{ (T_0 , x , T_1) , (T_0 , z , T_3) , (T_1 , y , T_2) , (T_1 , x , T_3) , (T_3 , x , T_\infty) , (T_1 , y , T_\infty) , (T_2 , z , T_\infty)\} 
+			$
+
+			Nützlich - Relation: 
+
+			$
+			w_0(z) \rightarrow r_3(z) \\
+			w_0(x) \rightarrow r_1(x) \\
+			w_1(y) \rightarrow r_2(y) \\
+			w_1(x) \rightarrow r_3(x) \\
+			w_3(x) \rightarrow r_\infty(x) \\
+			w_1(y) \rightarrow r_\infty(y) \\
+			w_2(z) \rightarrow r_\infty(z) \\
+			r_1(x) \rightarrow w_1(y) \\
+			r_1(x) \rightarrow w_1(x) \\
+			r_2(y) \rightarrow w_2(z) \\
+			r_3(z) \rightarrow w_3(z) \\ 
+			r_3(x) \rightarrow w_3(z) \\
+			r_3(x) \rightarrow w_3(x) \\
+			r_3(z) \rightarrow w_3(x) \\
+			$
+
+			Lebendige Schritte: 
+
+			$
+			w_3(x) , w_1(y) , w_2(z) , w_1(x) , w_0(z) , w_0(x) , r_3(x) , r_2(y) , r_1(x) , r_3(z) , r_\infty(x) , r_\infty(y) , r_\infty(z)
+			$
+
+			Lebendige Liest - Von - Relation: 
+
+			$
+			LRF(S) = \{ (T_0 , x , T_1) , (T_0 , z , T_3) , (T_1 , y , T_2) , (T_1 , x , T_3) , (T_3 , x , T_\infty) , (T_1 , y , T_\infty) , (T_2 , z , T_\infty)\} \\ 
+			$
+			
+			\item
+			$
+			conf(S) = \{ (r_1(x) , w_3(x)) , (r_3(z) , w_2(z)) , (w_1(y) , r_2(y)) , (w_1(x) , r_3(x)) , \\ (w_1(x) , w_3(x)) , (w_3(z) , w_2(z))\} \\ 
+			$
+			
+			\item
+				Der Konfliktgraph ist azyklisch, somit ist $S \in CSR$. Da $CSR \subset VSR \subset FSR$ gilt, ist $S \in VSR$ und $S \in FSR$.
+				
+				\item
+Die Commitoperationen müssen anhand der im Konfliktgraphen beschriebenen Reihenfolge ablaufen. Damit $S \in COCSR$ gilt, muss gelten: $c_1 <_S c_3 <_S c_2$
+	\end{enumerate}
+	
+\section{CSR,OCSR,COCSR}
+Gegeben sei der Schedule $S := r_1(x)w_1(z)r_2(z)w_1(y)c_1r_3(y)w_2(z)c_2w_3(x)w_3(y)c_3$
+	\begin{enumerate}[label={\alph*)}]
+		\item 
+			$
+			conf(S) = \{ (r_1(x) , w_3(x)) , (w_1(z) , r_2(z)) , (w_1(z) , w_2(z)) , (w_1(y) , r_3(y)) , (w_1(y) , w_3(y))\} \\ 
+			$
+			
+			\item
+			
+			Der Konfliktgraph ist azyklisch, somit gilt $S \in CSR$
+			
+			
+			\item 
+$S \in COCSR$ , da die Ordnung der Commitoperationen der Konfliktordnung entspricht, da gilt: $c_1 <_S c_2$ und $c_1 <_S c_3$. Da zudem $COCSR \subset OCSR$ gilt, ist $S \in OCSR$.
+	\end{enumerate}
+\end{document}
