@@ -214,7 +214,7 @@ Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w
 				Bei allen zu testenden seriellen Historien $S'$ gilt $op(S) = op(S')$.
 				
 				\begin{itemize}
-					\item Teste $S_1' = T_1 T_2 T_3 = r_1(z) w_1(z) w_1(y) r_2(z) w_2(y) w_2(y) r_3(x) w_3(y)$. $(T_0, z, T_2) \in LRF(S) $ ist in $RF(S_1')$ nicht enthalten. Deshalb ist diese Reihenfolge nicht korrekt. Um $(T_0, x, T_2) \in RF(S_1')$ zu gewährleisten muss $T_2$ vor $T_1$ sein, denn $T_1$ schreibt auf $z$. Somit testen wir nur noch folgende drei Fälle:
+					\item Teste $S_1' = T_1 T_2 T_3 = r_1(z) w_1(z) w_1(y) r_2(z) w_2(y) w_2(y) r_3(x) w_3(y)$. $(T_0, z, T_2) \in LRF(S) $ ist in $RF(S_1')$ nicht enthalten. Deshalb ist diese Reihenfolge nicht korrekt. Um $(T_0, z, T_2) \in RF(S_1')$ zu gewährleisten muss $T_2$ vor $T_1$ sein, denn $T_1$ schreibt auf $z$. Somit testen wir nur noch folgende drei Fälle:
 					\item Teste $S_2' = T_2 T_1 T_3 = r_2(z) w_2(y) w_2(y) r_1(z) w_1(z) w_1(y) r_3(x) w_3(y)$. $(T_2 , z , T_\infty) \in LRF(S)$ aber es gilt nicht $(T_2 , z , T_\infty) \in RF(S_2')$. Somit teste:
 					\item Teste $S_3' = T_2 T_3 T_1 = r_2(z) w_2(y) w_2(y) r_3(x) w_3(y) r_1(z) w_1(z) w_1(y)$. $(T_3 , y , T_\infty) \in LRF(S)$ aber es gilt nicht $(T_3 , y , T_\infty) \in RF(S_3')$. Somit testen wir:
 					\item Teste $S_4' = T_3 T_2 T_1 = r_3(x) w_3(y) r_2(z) w_2(y) w_2(y) r_1(z) w_1(z) w_1(y)$. $(T_2 , z , T_\infty) \in LRF(S)$ aber es gilt nicht $(T_2 , z , T_\infty) \in RF(S_4')$.
@@ -223,6 +223,15 @@ Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w
 				Somit gibt es keine serielle Historie $S'$ mit $op(S) = op(S')$ für die $LRF(S) = LRF(S')$ gilt (bei den Tests wird immer gezeigt dass ein Element nicht in $RF(...)$ gilt. Das reicht aus denn falls ein Element nicht in $RF$ liegt, dann ist es auch nicht in $LRF$).
 				Daraus folgt dass $S \not\in FSR$ und somit auch nicht in $VSR$ und $CSR$ enthalten ist. 
 			
+			
+Alternative Loesung:
+
+Anhand von LRF(S) lassen sich für die seriellen Historien bereits einige Bedingungen heraus lesen:
+	\begin{itemize}
+		\item aus $(T_0 , z , T_2)$ folgt, dass fuer die serielle Historie gelten muss $T_2 < T_1$
+		\item aus $(T_2 , z , T_\infty)$ folgt, dass fuer die serielle Historie gelten muss $T_1 < T_2$	
+	\end{itemize}
+Beide Bedingungen koennen aber in einer seriellen Hostorie nicht umgesetzt werden, somit gibt es keine serielle Historie mit $S' \approx_f S$. Daraus folgt dass $S \not\in FSR$ und somit auch nicht in $VSR$ und $CSR$ enthalten ist. 
 	\end{enumerate}
 	
 \section{FSR,VSR,CSR,COCSR}
