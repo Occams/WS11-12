@@ -164,7 +164,7 @@
 Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w_3(y)c_3$
 	\begin{enumerate}[label={\alph*)}]
 		\item
-			Schrittgraph
+			\input{graph_1_a}
 		\item 
 		
 		Liest - Von - Relation: 
@@ -206,7 +206,9 @@ Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w
 			conf(S) = \{ (r_1(z) , w_2(z)) , (r_2(z) , w_1(z)) , (w_1(z) , w_2(z)) , (w_1(y) , w_2(y)) ,\\ (w_1(y) , w_3(y)) , (w_2(y) , w_3(y))\} \\ 
 			$
 			\item
-				Konfliktgraphzeichnung
+				\input{graph_1_d}
+			\item
+				\input{graph_1_e}
 			\item
 				Es wird überprüft ob $S \in FSR$. $S \in FSR \Leftrightarrow \exists S' : S'\ ist\ seriell\ und\ S' \approx_f S$.
 				Laut Theorem 3.50 gilt $S \approx_f S' \Leftrightarrow op(S) = op(S') \land LRF(S) = LRF(S')$.
@@ -250,7 +252,8 @@ Gegeben sei der Schedule $S := r_1(x)r_3(z)w_1(y)r_2(y)w_1(x)r_3(x)w_3(z)w_2(z)w
 			$H_{S} (w_{3}(x)) = f_{3}^{x}(H_{S} (r_{3}(x)),H_{S} (r_{3}(z))) = f_{3}^{x}(f_{1}^{x}(f_0^{x}()),f_{0}^{z}())$\\[0.5cm]
 			$H_S[S](x) = H_S(w_3 (x)) = f_{3}^{x}(f_{1}^{x}(f_0^{x}()),f_{0}^{z}())$\\
 			
-			\item
+		\item
+			\input{graph_2_b}
 			
 				Liest - Von - Relation: 
 
@@ -290,6 +293,7 @@ Gegeben sei der Schedule $S := r_1(x)r_3(z)w_1(y)r_2(y)w_1(x)r_3(x)w_3(z)w_2(z)w
 			$
 			
 			\item
+				\input{graph_2_c}
 			$
 			conf(S) = \{ (r_1(x) , w_3(x)) , (r_3(z) , w_2(z)) , (w_1(y) , r_2(y)) , (w_1(x) , r_3(x)) , \\ (w_1(x) , w_3(x)) , (w_3(z) , w_2(z))\} \\ 
 			$
@@ -309,12 +313,12 @@ Gegeben sei der Schedule $S := r_1(x)w_1(z)r_2(z)w_1(y)c_1r_3(y)w_2(z)c_2w_3(x)w
 			conf(S) = \{ (r_1(x) , w_3(x)) , (w_1(z) , r_2(z)) , (w_1(z) , w_2(z)) , (w_1(y) , r_3(y)) , (w_1(y) , w_3(y))\} \\ 
 			$
 			
-			\item
+		\item
+				\input{graph_3_b}
+				Der Konfliktgraph ist azyklisch, somit gilt $S \in CSR$
 			
-			Der Konfliktgraph ist azyklisch, somit gilt $S \in CSR$
 			
-			
-			\item 
+		\item 
 $S \in COCSR$ , da die Ordnung der Commitoperationen der Konfliktordnung entspricht, da gilt: $c_1 <_S c_2$ und $c_1 <_S c_3$. Da zudem $COCSR \subset OCSR$ gilt, ist $S \in OCSR$.
 	\end{enumerate}
 \end{document}

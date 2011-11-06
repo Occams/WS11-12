@@ -1,0 +1,8 @@
+digraph G {
+	graph [ranksep=0.4, nodesep=0.1,rankdir=LR]
+  node [shape=circle,fontsize=10];
+	"r_1(z)" -> "w_2(z)"
+	"r_2(z)" -> "w_1(z)" -> "w_2(z)"
+	"w_1(y)" -> "w_2(y)" -> "w_3(y)"
+	"w_1(y)" -> "w_3(y)"
+}
