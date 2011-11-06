@@ -218,30 +218,185 @@ Nachteile ORDB:
 		\item{Benutzer definierter Datentyp} \begin{itemize}
 			\item Name, Attribute, Methoden
 			\item Anweisung: CREATE TYPE
+			
+			\item CREATE OR REPLACE TYPE adress\_type AS OBJECT (
+			
+	street VARCHAR2(250),
+	
+	city VARCHAR2(200)
+	
+);
+		\item CREATE OR REPLACE TYPE person\_type AS OBJECT (
+		
+	first\_name VARCHAR2(50),
+	
+	last\_name VARCHAR2(50),
+	
+	address address\_type
+	
+);
 		\end{itemize}
 		\item{Vererbung}
 	\begin{itemize}
 			\item Verweis auf Basistyp
 			\item Anweisung: CREATE TYPE name UNDER obertyp
+			\item CREATE TYPE student\_type UNDER person\_type (
+			
+	student\_id INTEGER
+	
+);
 		\end{itemize}
 				\item{Objekttabellen}
 	\begin{itemize}
 			\item Tabellen von Instanzen der neuen Datentypen
 			\item Constraints und Verweise auf Typ
 			\item Anweisung: CREATE TABLE name OF name\_typ
+			\item CREATE TABLE student OF student\_type (
+			
+	last\_name NOT NULL,
+	
+	PRIMARY KEY (student\_id)
+	
+);
+			\item INSERT INTO students VALUES (
+			
+	David,
+	
+	Coquil,
+	
+	address\_type(Innstrasse,Passau),
+	
+	9560334
+	
+);
 		\end{itemize}
 						\item{Polymorphismus}
 	\begin{itemize}
 			\item Objekt kann als verschiedener Typ auftreten
+			\item CREATE TYPE university\_type AS OBJECT (
+			
+	function VARCHAR2(200),
+	
+	person person\_type
+	
+);
+
+CREATE TABLE university OF university\_type;
+		\item INSERT INTO university VALUES (
+		
+	Professor,
+	
+	person\_type(
+	
+		Harald, 
+		
+		Kosch,
+		
+		address\_type(Innstrasse, Passau)
+		
+	)
+	
+);
+		\item INSERT INTO university VALUES (
+		
+	Student,
+	
+	student\_type(
+	
+		Peter,
+		
+		Parker,
+		
+		address\_type(Ingram Street,New York City),
+		
+		9999
+		
+	)
+	
+);
+
+
 		\end{itemize}
 					\item{Beziehungs zwischen Datentypen}
 	\begin{itemize}
 			\item{1:1} Umsetzung mit REF
+			\item CREATE TYPE person\_type2 AS OBJECT (
+			
+	first\_name VARCHAR2(50),
+	
+	last\_name VARCHAR2(50),
+	
+	address REF address\_type
+	
+);
+
+CREATE TABLE address OF address\_type;
+
+INSERT INTO address VALUES (Innstrasse, Passau);
+
+CREATE TABLE person2 OF person\_type2;
+
+INSERT INTO person2 VALUES (
+
+	David,
+	
+	Coquil,
+	
+	(SELECT REF(a) FROM address a
+	
+	  	WHERE a.street LIKE Innstrasse AND   
+	  	 	
+		a.city LIKE Passau);
+		
+ );
 			\item{1:n} Umsetzung mit nested tables (Tabelle, die als Attribut in einem Typ benutzt wird)
+			\item CREATE TYPE nested\_address\_type AS TABLE OF address\_type;
+			
+			CREATE TYPE person\_nested AS OBJECT (
+			
+	first\_name VARCHAR2(50),
+	
+	last\_name VARCHAR2(50),
+	
+	address nested\_address\_type
+	
+);
+
+CREATE TABLE person\_nested OF person\_type\_nested
+        
+	NESTED TABLE address STORE AS Address\_Table;
+	
+	INSERT INTO person\_nested VALUES (
+	
+	David, Coquil,
+	
+	nested\_address\_type(
+	
+		address\_type(
+		
+			Innstrasse,
+			
+			Passau
+			
+		),
+		
+		address\_type(
+		
+			Avenue Einstein,
+			
+			Lyon
+			
+	  )
+	  
+     )
+     
+);
+
 		\end{itemize}
 					\item{DOT - Operator}
 	\begin{itemize}
 			\item Navigieren im Schema für Anfragen
+			\item SELECT s.address.street, s.address.city FROM students s;
 		\end{itemize}
 					\item{REF}
 	\begin{itemize}
@@ -255,13 +410,14 @@ Nachteile ORDB:
 					\item{DEREF}
 	\begin{itemize}
 			\item Dereferenzieren
+			\item SELECT p.address FROM person2 p WHERE p.last\_name LIKE Coquil;
 		\end{itemize}
 	\end{itemize}
 \section{Aufgabe 3}
-Beispiellösung wird noch hochgeladen von David.
+Siehe Beispiellösung in StudIP.
 \section{Aufgabe 4}
-Beispiellösung wird noch hochgeladen von David.
+Siehe Beispiellösung in StudIP.
 \section{Aufgabe 5}
-Beispiellösung wird noch hochgeladen von David.
+Siehe Beispiellösung in StudIP.
 
 \end{document}
