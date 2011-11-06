@@ -164,10 +164,11 @@
 Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w_3(y)c_3$
 	\begin{enumerate}[label={\alph*)}]
 		\item
+			\textit{Zeichnen Sie den Schrittgraphen $D(S)$ und kennzeichnen Sie die nicht lebendigen Schritte durch Unterstreichen.}
 			\input{graph_1_a}
-		\item 
-		
-		Liest - Von - Relation: 
+		\item
+			\textit{Bestimmen Sie $RF(S)$ und $LRF(S)$.}
+			Liest - Von - Relation: 
 
 			$
 			RF(S) = \{ (T_0 , z , T_1) , (T_0 , x , T_3) , (T_0 , z , T_2) , (T_0 , x , T_\infty) , (T_3 , y , T_\infty) , (T_2 , z , T_\infty)\} 
@@ -202,14 +203,18 @@ Gegeben sei der Schedule $S := r_1(z)r_3(x)r_2(z)w_1(z)w_1(y)c_1w_2(y)w_2(z)c_2w
 			$
 			
 			\item
+				\textit{Stellen Sie die Konfliktrelation $conf(S)$ auf.}
 				$
 			conf(S) = \{ (r_1(z) , w_2(z)) , (r_2(z) , w_1(z)) , (w_1(z) , w_2(z)) , (w_1(y) , w_2(y)) ,\\ (w_1(y) , w_3(y)) , (w_2(y) , w_3(y))\} \\ 
 			$
 			\item
+				\textit{Zeichnen Sie den Konflikschrittgraphen $D_c (S)$.}
 				\input{graph_1_d}
 			\item
+				\textit{Zeichnen Sie den Konfliktgraphen $G(S)$.}
 				\input{graph_1_e}
 			\item
+				\textit{Prüfen Sie, ob $S$ in den Klassen $FSR$, $VSR$ bzw. $CSR$ enthalten ist.}
 				Es wird überprüft ob $S \in FSR$. $S \in FSR \Leftrightarrow \exists S' : S'\ ist\ seriell\ und\ S' \approx_f S$.
 				Laut Theorem 3.50 gilt $S \approx_f S' \Leftrightarrow op(S) = op(S') \land LRF(S) = LRF(S')$.
 				
@@ -239,8 +244,9 @@ Beide Bedingungen koennen aber in einer seriellen Hostorie nicht umgesetzt werde
 \section{FSR,VSR,CSR,COCSR}
 Gegeben sei der Schedule $S := r_1(x)r_3(z)w_1(y)r_2(y)w_1(x)r_3(x)w_3(z)w_2(z)w_3(x)$
 	\begin{enumerate}[label={\alph*)}]
-
 		\item 
+			\textit{Bestimmen Sie die Herbrand-Semantik des Datenobjekts $x$, d. h. $H[S](x)$.}
+		
 			$H_{S} (r_{1}(x)) = H_{S} (w_{0}(x)) = f_{0}^{x}()$\\
 			$H_{S} (r_{3}(z)) = H_{S} (w_{0}(z)) = f_{0}^{z}()$\\
 			$H_{S} (w_{1}(y)) = f_{1}^{y}(H_{S} (r_{1}(x))) = f_{1}^{y}(f_{0}^{x}())$\\
@@ -253,6 +259,7 @@ Gegeben sei der Schedule $S := r_1(x)r_3(z)w_1(y)r_2(y)w_1(x)r_3(x)w_3(z)w_2(z)w
 			$H_S[S](x) = H_S(w_3 (x)) = f_{3}^{x}(f_{1}^{x}(f_0^{x}()),f_{0}^{z}())$\\
 			
 		\item
+			\textit{Zeichnen Sie den Schrittgraphen von $S$ und kennzeichnen Sie die nicht lebendigen Schritte durch Unterstreichen.}
 			\input{graph_2_b}
 			
 				Liest - Von - Relation: 
@@ -293,15 +300,18 @@ Gegeben sei der Schedule $S := r_1(x)r_3(z)w_1(y)r_2(y)w_1(x)r_3(x)w_3(z)w_2(z)w
 			$
 			
 			\item
+				\textit{Erstellen Sie den Konfliktgraphen von $S$.}
 				\input{graph_2_c}
 			$
 			conf(S) = \{ (r_1(x) , w_3(x)) , (r_3(z) , w_2(z)) , (w_1(y) , r_2(y)) , (w_1(x) , r_3(x)) , \\ (w_1(x) , w_3(x)) , (w_3(z) , w_2(z))\} \\ 
 			$
 			
 			\item
+				\textit{Prüfen Sie, ob $S$ in den Klassen $FSR$, $VSR$ bzw. $CSR$ enthalten ist.}
 				Der Konfliktgraph ist azyklisch, somit ist $S \in CSR$. Da $CSR \subset VSR \subset FSR$ gilt, ist $S \in VSR$ und $S \in FSR$.
 				
 				\item
+				\textit{Geben Sie eine Reihenfolge für die Commit-Operationen von $T1$ , $T2$ und $T3$ an, so dass $S \in COCSR$.}
 Die Commitoperationen müssen anhand der im Konfliktgraphen beschriebenen Reihenfolge ablaufen. Damit $S \in COCSR$ gilt, muss gelten: $c_1 <_S c_3 <_S c_2$
 	\end{enumerate}
 	
@@ -309,16 +319,19 @@ Die Commitoperationen müssen anhand der im Konfliktgraphen beschriebenen Reihenf
 Gegeben sei der Schedule $S := r_1(x)w_1(z)r_2(z)w_1(y)c_1r_3(y)w_2(z)c_2w_3(x)w_3(y)c_3$
 	\begin{enumerate}[label={\alph*)}]
 		\item 
+			\textit{Stellen Sie die Konfliktrelation $conf(S)$ auf.}
 			$
 			conf(S) = \{ (r_1(x) , w_3(x)) , (w_1(z) , r_2(z)) , (w_1(z) , w_2(z)) , (w_1(y) , r_3(y)) , (w_1(y) , w_3(y))\} \\ 
 			$
 			
 		\item
+			\textit{Zeigen Sie mithilfe des Konfliktgraphen $G(S)$, dass $S \in CSR$ gilt.}
 				\input{graph_3_b}
 				Der Konfliktgraph ist azyklisch, somit gilt $S \in CSR$
 			
 			
 		\item 
+			\textit{Prüfen Sie, ob ebenfalls $S \in OCSR$ bzw. $S \in COCSR$ gilt.}
 $S \in COCSR$ , da die Ordnung der Commitoperationen der Konfliktordnung entspricht, da gilt: $c_1 <_S c_2$ und $c_1 <_S c_3$. Da zudem $COCSR \subset OCSR$ gilt, ist $S \in OCSR$.
 	\end{enumerate}
 \end{document}
