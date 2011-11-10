@@ -166,11 +166,51 @@
 
 \mysection{Aufgabe 1: Farbmodelle}
 \subsection{} \textit{Was ist ein Farbmodell?}
+
+	Ein Farbmodell verbindet die subjektive Wahrnehmung von Farben mit messbaren Größen. Da prinzipiell unendlich viele Spektrallichter und
+	Farbmischungen existieren stellt ein Farbmodell eine nötige Abstraktion der realen Welt dar. Ziel ist es einen möglichst großen Bereich
+	des Farbempfindens zu erfassen und diesen möglichst einfach zu beschreiben.
 \subsection{} \textit{Beschreiben Sie die wichtigsten Eigenschaften folgender Modelle: RGB, CYMK, HSV.}
+
+	\begin{description}
+		\item[RGB] ist ein additives Farbmodell mit den Grundfarben Rot, Grün und Blau. Farben enstehen durch mischen der Grundfarben.
+		\item[CMYK] ist ein subtraktives Farbmodell mit den Grundfarben Cyan, Magenta, Yellow und Schwarz (Black). Farben enstehen durch mischen der Grundfarben.
+		\item[HSV] Die drei Parameter Hue (Farbton), Saturation (Sättigung) und Brightness (Helligkeit) bestimmen die jeweilige Farbmischung.
+			Die Farbtöne sind auf einem Farbkreis ($0^{\circ}--360^{\circ}$) angeordnet. Sättigung und Helligkeit werden im Intervall $[0,1]$ festgelegt.
+	\end{description}
 \subsection{} \textit{Was sind die Vor- und Nachteile dieser Modelle?}
+
+	\begin{description}
+		\item[RGB] einfaches Modell, auf Geräte (Bildschirm, Anzeige) zugeschnitten, keine Trennung von Luminanz und Farbe, das Farbergebnis steht im Vordergrund
+		\item[CMYK] einfaches Modell, keine Trennung von Luminanz und Farbe, Grundlage für den Vierfarbdruck
+		\item[HSV] Orientiert sich an der menschlichen Farbwahrnehmung und erleichtert somit das intuitive spezifizieren von Farbmischungen,
+			um einen Farbton in Graustufen umzurechnen müssen im Allgemeinen mehr als ein Parameter verändert werden
+	\end{description}
+	
 \mysection{Aufgabe 2: Bildformate}
 \subsection{} \textit{Was Sie die Unterschiede zwischen Vektor- und Rastergrafiken?}
-\subsection{} \textit{Skizzieren Sie die wichtigsten Eigenschaften der Bildformate GIF, PNG und JPEG. Berückusichtigen Sie dabei folgende Dimensionen: Farbmodelle, Farbtiefe, Kompression, Dateigröße.}
+
+	Bei \textbf{Rastergrafiken} definieren Pixelwerte die einzelnen Bildpunkte und somit das Bild.
+	In den Pixeln wird entweder ein konkreter Farbwert oder eine Referenz auf eine Farbtabelle (indizierte Farbe) kodiert.
+	Eine Rastergrafik besitzt also eine feste Auflösung. Die Skalierung des Bilds
+	erfordert eine Interpolation oder Downsampling und ist gegebenenfalls mit einem Qualitätsverlust verbunden. Pixelbasierte Operationen sowie das Darstellen von komplexen
+	Bildinhalten sind hingegen einfach zu realisieren. 
+	
+	\textbf{Vektorgrafiken} werden mit Hilfe von mathematisch/programmatisch definierten Zeichenanweisungen deklariert und besitzen somit im Gegensatz zu Rastergrafiken keine feste Auflösung.
+	Eine Vektorgrafik muss deshalb jedesmal für eine gewünschte Auflösung gerendert werden. Bei einer Skalierung der Vektorgrafik ensteht natürlich kein Qualitätverlust.
+	Einzelne Bildelemente/Gruppierungen können einfach geometrisch verformt und transformiert werden. Komplexe Bildinhalte (Landschaftsaufnahmen, etc.) können nur sehr schwer
+	mathematisch beschrieben werden.
+\subsection{} \textit{Skizzieren Sie die wichtigsten Eigenschaften der Bildformate GIF, PNG und JPEG. Berücksichtigen Sie dabei folgende Dimensionen: Farbmodelle, Farbtiefe, Kompression, Dateigröße.}
+
+	\begin{description}
+		\item[GIF] mehrere Bilddeklarationen in einer Datei möglich, Farbtiefe: 256 indizierte Farben (8-Bit Verweise in eine Farbtabelle), nicht-standardisierte Animation von
+			Einzelbildern möglich, verlustfreie Kompression mit \textit{LZW}, Speicherbedarf mittel
+		\item[PNG] unterschiedliche Farbtiefen und Transparenz realisierbar, Graustufen oder Farbbilder, verlustfreie Kompression mittels Vorfilter
+			(Differenzen zu Nachbarpixel werden anstatt des jeweiligen Pixelwertes gespeichert) und dem \textit{Deflate-Algorithmus}, Speicherbedarf: niedrig-mittel
+		\item[JPEG] verschiedene Farbtiefen sowie Komprimierungsmethoden, skalierbare Kompression, sequentieller oder progressiver Bildaufbau, 
+			Kompression: Umwandlung von RGB nach YCbCr $\rightarrow$ Subsampling der Chrominanz- und Luminanzkanäle $\rightarrow$ DCT auf 8x8-Blöcken der Kanäle $\rightarrow$
+			Quantisierung der DCT-Werte (verlustbehaftet) $\rightarrow$ Zig-Zag-Entropiekodierung der Blöcke, Speicherbedarf: niedrig
+	\end{description}
 
 \mysection{Aufgabe 3: Bildmanipulation unter Java}
 \subsection{} \textit{Entwerfen Sie eine Java-Klasse, die pixelbasierte Operationen auf ein digitales Bild ermögliochen soll. Achten Sie dabei insbesondere auf folgende Punkte:
