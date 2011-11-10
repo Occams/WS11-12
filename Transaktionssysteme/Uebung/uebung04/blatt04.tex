@@ -9,6 +9,7 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage{amsmath}
 \usepackage{graphicx,enumitem,wasysym,multicol,libertine,xcolor,microtype,lipsum,fixltx2e,
 	fancyhdr,vmargin,calc,lastpage,hyperref,listings,lastpage,lipsum,preview,tikz,rotating,multirow,tabularx}
 \usetikzlibrary{snakes,arrows,shapes}
@@ -161,7 +162,7 @@
 \maketitle
 
 \section{2PL, S2PL, SS2PL, C2PL}
-	\begin{tabularx}{0.75\textwidth}{ c c | p{2cm} | p{2.8cm} | p{2.8cm} | p{2.8cm} | p{2.8cm} |}
+	\begin{tabularx}{0.75\textwidth}{ c c | p{2cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} |}
 		\cline{3-7}
 		& & \multicolumn{5}{c|}{Zeiten der Transaktion} \\
 		\cline{3-7}
@@ -177,12 +178,50 @@
 		\cline{1-7}
 	\end{tabularx}
 	
-\section{2PL, S2PL, SS2PL, C2PL}
-Gegeben sei folgender Schedule $S :=$
+\section{2PL}
+	Gegeben sei folgender Schedule S:
+	$$
+		S :=r_1(x) r_1(y) w_2(x) r_3(y) r_4(x) c_1 c_2 c_3 c_4
+	$$
+	$$
+		S_{out}^{2PL} = r_1l(x) r_1(x) r_1l(y) r_1(y) r_1u(x) r_1u(y) w_2l(x) w_2(x) w_2u(x) r_3l(y) r_3(y) r_3u(y) r_4l(x) r_4(x) r_4u(x)
+	$$
+	
+\section{SS2PL}
+Gegeben sei folgender Schedule S:
+	$$
+		S :=r_1(y) r_2(y) r_3(y) r_4(z) w_2(y) r_3(x) w_1(x) r_4(x) w_2(x) w_3(z) c_1 c_2 c_3 c_4
+	$$
+	\begin{align*}
+			S_{out}^{SS2PL} = r_1l(y) r_1(y) r_2l(y) r_2(y) r_3l(y) r_3(y) r_4l(z) r_4(z) r_3l(x) r_3(x) r_4l(x) r_4(x) \\
+								c_4 r_4u(z) r_4u(x) w_3l(z) w_3(z) c_3 r_3u(y) r_3u(x) w_3u(z) w_1l(x) w_1(x) c_1 r_1u(y) \\
+								w_1u(x) w_2l(y) w_2(y) w_2l(x) w_2(x) c_3 r_2u(y) w_2u(y) w_2u(x)
+	\end{align*}
+	
+\section{S2PL}
+Gegeben sei folgender Schedule S:
+	$$
+		S :=r_1(x) r_3(z) w_1(y) r_2(y) w_1(x) r_3(x) w_3(z) w_2(z) w_3(x) c_1 c_2 c_3
+	$$
+	\begin{align*}
+			S_{out}^{S2PL} = r_1l(x) r_1(x) r_3l(z) r_3(z) w_1l(y) w_1(y) w_1l(x) w_1(x) r_1u(x) c_1 w_1u(y) w_1u(x) r_2l(y) \\
+											r_2(y) r_3l(x) r_3(x) w_3l(z) w_3(z) w_3l(x) r_3u(x) w_3(x) c_3 w_3u(z) w_3u(x) w_2l(z) r_2u(y) \\
+											w_2(z) c_2 w_2u(z)
+	\end{align*}
+
 \section{2PL, C2PL, Deadlocks}
-Gegeben sei der Schedule $S :=$
+Gegeben sei der Schedule $S := w_1(x) r_2(y) w_2(x) w_1(y) c_1 c_2$
 	\begin{enumerate}[label={\alph*)}]
-		\item 
+		\item $ S_{out}^{2PL} = w_1l(x) w_1(x) r_2l(y) r_2(y)$ \lightning Deadlock
+		
+		\item $ S_{out}^{C2PL} = w_1l(x) w_1l(y) w_1(x) w_1u(x) w_1(y) w_1u(y) r_2l(y) w_2l(x) r_2(y) r_2u(y) w_2(x) w_2u(x) c_1 c_2 $
+		
+		\item Ein \textit{konservativer 2PL-Scheduler} ist deadlockfrei, lässt aber weniger Parallelität bei der Auführung von Operationen zu was zu einem Performanzverlust führen kann.
+		
+		\item Sei $S$ ein Schedule und $o_i$ die erste Datenoperation von $S$. Angenommen ein späterer Schritt $p_i(x)$ führt zu einem Deadlock.
+			Die Transaktion $T_j$ besitzt also einen nicht kompatiblen Lock $o_jl(x)$ auf ein Datenobjekt $x$.
+			Dann kann aber $o_i$ nicht die erste Datenoperation des Schedules sein, da $T_i$ keinen Lock $o_il(x)$ besitzt (\textit{C2PL-Scheduler}).
+			Widerspruch zur Annahme \lightning
 	\end{enumerate}
 	
 \end{document}
