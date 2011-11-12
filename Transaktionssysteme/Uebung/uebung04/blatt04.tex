@@ -222,6 +222,23 @@ Gegeben sei der Schedule $S := w_1(x) r_2(y) w_2(x) w_1(y) c_1 c_2$
 			Die Transaktion $T_j$ besitzt also einen nicht kompatiblen Lock $o_jl(x)$ auf ein Datenobjekt $x$.
 			Dann kann aber $o_i$ nicht die erste Datenoperation des Schedules sein, da $T_i$ keinen Lock $o_il(x)$ besitzt (\textit{C2PL-Scheduler}).
 			Widerspruch zur Annahme \lightning
+			
+			Variante 2: Sei $S$ ein Schedule und sei $trans(S)=\left\{T_1,\dots,T_n\right\}$. Sei 
+			$$\phi := \{1,\dots, n\} \rightarrow \{1,\dots, n\}$$
+			eine Permutation.
+			Angenommen es besteht eine zyklische Deadlockbeziehung $\rightarrow_D$ zwischen den Transaktionen
+			$$T_{\phi(1)} \rightarrow_D T_{\phi(2)} \rightarrow_D \dots \rightarrow_D T_{\phi(n)} \rightarrow_D T_{\phi(1)}$$
+			Sei 
+			$$var(T_i) = \left\{x | x \text{ wird von } op(x) \in op(T_i) \text{ gelesen/geschrieben}\right\}$$
+			Für obige Situation gilt also 
+			$$X = var(T_\phi(1)) \cap var(T_\phi(n)) \neq \emptyset$$
+			O.b.d.A halte $T_{\phi(1)}$ einen Lock $o_{\phi(1)}l(x \in X)$ und $T_{\phi(n)}$ einen Lock
+			$o_{\phi(n)}l(y \in X)$ mit $x \neq y$. Für einen \textit{C2PL-Scheduler} folgt also für die erste Datenoperation der Transaktionen
+			$$first(T_{\phi(n)}) <_S first(T_{\phi(1)})$$ 
+			und 
+			$$first(T_{\phi(1)}) <_S first(T_{\phi(n)})$$ 
+			Widerspruch zur Annahme \lightning
+			
 	\end{enumerate}
 	
 \end{document}
