@@ -239,6 +239,10 @@ Gegeben sei der Schedule $S := w_1(x) r_2(y) w_2(x) w_1(y) c_1 c_2$
 			$$first(T_{\phi(1)}) <_S first(T_{\phi(n)})$$ 
 			Widerspruch zur Annahme \lightning
 			
+			Variante 3:
+			Angenommen wir haben einen Schedule erzeugt von einem konservativen 2PL-Scheduler mit Transaktionen $T_1$ und $T_2$ und einem Deadlock. Dann gibt es zwei Datenobjekte $x$ und $y$ wobei $T_1$ den Lock auf $x$ hat und $T_2$
+			auf $y$. O.b.d.A wartet $T_1$ auf $y$ und $T_2$ auf $x$. Sei die erste Datenoperation von $T_1$ vor allen Datenoperationen vor $T_2$.
+			Dann führt $T_1$ zuerst alle Locks aus die er braucht. Das heißt $w_1l(x) und w_1l(y)$. Somit kann $T_2$ seinen Lock auf $y$ gar nicht erhalten bevor $T_1$ fertig ist. Widerspruch zur Annahme. Somit ist jeder C2PL Scheduler deadlockfrei.
 	\end{enumerate}
 	
 \end{document}
