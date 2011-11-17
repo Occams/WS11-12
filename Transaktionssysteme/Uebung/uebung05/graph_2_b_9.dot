@@ -1,0 +1,5 @@
+digraph G {
+	graph [ranksep=0.4, nodesep=0.1,rankdir=LR]
+ 	 node [shape=circle,fontsize=10];
+	"T_4"
+}

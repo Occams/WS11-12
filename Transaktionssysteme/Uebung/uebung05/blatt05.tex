@@ -209,102 +209,146 @@
 \begin{enumerate}[label={\alph*)}]
 	\item \begin{itemize}
 					\item \textbf{Initial:} $emptyGraph()$
-					\item \begin{tabularx}{\textwidth}{ | X | X |}
-										\hline
-										\textbf{Output} & \textbf{Statusänderungen} \\
-										\hline \hline
-										$w_1(x)$ &  \\
-										\hline
-										$r_2(y)$ &  \\
-										\hline
-										$r_1(x)$ & \\
-										\hline
-										$r_2(x)$ & \\
-										\hline
-										$w_2(y)$ & \\
-										\hline
-									\end{tabularx}
+					\item \textbf{Output}: $w_1(x)$
+					\item \textbf{Statusänderungen}: \input{graph_2_a_1}
+					
+					\item \textbf{Output}: $r_2(y)$
+					\item \textbf{Statusänderungen}: \input{graph_2_a_2}
+					
+					\item \textbf{Output}: $r_1(x) c_1$
+					\item \textbf{Statusänderungen}: \input{graph_2_a_3}
+								$\xrightarrow{Garbage Collection}$ \input{graph_2_a_3_gc}
+					
+					\item \textbf{Output}: $r_2(x)$
+					\item \textbf{Statusänderungen}: \input{graph_2_a_3_gc}
+					
+					\item \textbf{Output}: $w_2(y) c_2$
+					\item \textbf{Statusänderungen}: \input{graph_2_a_3_gc}
+								$\xrightarrow{Garbage Collection} emptyGraph()$
+								
 					\item $$S_{SGT} = w_1(x) r_2(y) r_1(x) c_1 r_2(x) w_2(y) c_2$$
 				\end{itemize}
 	\item \begin{itemize}
-					\item \textbf{Initial:} $r-TS(x) = w-TS(x) = 0$
-					\item \begin{tabularx}{\textwidth}{ | X | X |}
-										\hline
-										\textbf{Output} & \textbf{Statusänderungen} \\
-										\hline \hline
-										$r_1(x)$ & $r-TS(x) = 1$ \\
-										\hline
-										$r_2(x)$ & $r-TS(x) = 2$ \\
-										\hline
-										$w_3(x)$ & $w-TS(x) = 3$ \\
-										\hline
-										$w_4(x)$ & $w-TS(x) = 4$ \\
-										\hline
-										$w_1(x)$ & $TS(T_1) < w-TS(x) \newline TS(T_1) < r-TS(x) \newline \Rightarrow abort(T_1)$ \\
-										\hline
-										$w_2(x)$ & $TS(T_2) < w-TS(x) \newline \Rightarrow abort(T_2)$ \\
-										\hline
-									\end{tabularx}
-					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) c_1 w_1(x) a_1 w_2(x) a_2 c_3$$
+					\item \textbf{Initial:} $emptyGraph()$
+					\item \textbf{Output}: $r_1(x)$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_1}
+					
+					\item \textbf{Output}: $r_2(x)$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_2}
+					
+					\item \textbf{Output}: $w_3(x)$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_3}
+					
+					\item \textbf{Output}: $w_4(x)$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_4}
+					
+					\item \textbf{Output}: $w_1(x) a_1$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_5} Zyklus \lightning \input{graph_2_b_6}
+								
+					\item \textbf{Output}: $w_2(x) a_2$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_7} Zyklus \lightning \input{graph_2_b_8}
+								
+					\item \textbf{Output}: $c_3$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_8}
+								$\xrightarrow{Garbage Collection}$ \input{graph_2_b_9}
+								
+					\item \textbf{Output}: $c_4$
+					\item \textbf{Statusänderungen}: \input{graph_2_b_9}
+								$\xrightarrow{Garbage Collection} emptyGraph()$
+								
+					\item $$S_{SGT} = r_1(x) r_2(x) w_3(x) w_4(x) w_1(x) a_1 w_2(x) a_2 c_3 c_4$$
 				\end{itemize}
 \end{enumerate}
 	
-\section{SS2PL}
-Gegeben sei folgender Schedule S:
-	$$
-		S :=r_1(y) r_2(y) r_3(y) r_4(z) w_2(y) r_3(x) w_1(x) r_4(x) w_2(x) w_3(z) c_1 c_2 c_3 c_4
-	$$
-	\begin{align*}
-			S_{out}^{SS2PL} = r_1l(y) r_1(y) r_2l(y) r_2(y) r_3l(y) r_3(y) r_4l(z) r_4(z) r_3l(x) r_3(x) r_4l(x) r_4(x) \\
-								c_4 r_4u(z) r_4u(x) w_3l(z) w_3(z) c_3 r_3u(y) r_3u(x) w_3u(z) w_1l(x) w_1(x) c_1 r_1u(y) \\
-								w_1u(x) w_2l(y) w_2(y) w_2l(x) w_2(x) c_3 r_2u(y) w_2u(y) w_2u(x)
-	\end{align*}
-	
-\section{S2PL}
-Gegeben sei folgender Schedule S:
-	$$
-		S :=r_1(x) r_3(z) w_1(y) r_2(y) w_1(x) r_3(x) w_3(z) w_2(z) w_3(x) c_1 c_2 c_3
-	$$
-	\begin{align*}
-			S_{out}^{S2PL} = r_1l(x) r_1(x) r_3l(z) r_3(z) w_1l(y) w_1(y) w_1l(x) w_1(x) r_1u(x) c_1 w_1u(y) w_1u(x) r_2l(y) \\
-											r_2(y) r_3l(x) r_3(x) w_3l(z) w_3(z) w_3l(x) r_3u(x) w_3(x) c_3 w_3u(z) w_3u(x) w_2l(z) r_2u(y) \\
-											w_2(z) c_2 w_2u(z)
-	\end{align*}
+\section{Optimistische Protokolle: BOCC und FOCC}
+\begin{enumerate}[label={\alph*)}]
+	\item \begin{itemize}
+					\item \textbf{Output:} $r_1(x) r_2(x) r_1(y) r_3(x) c_1$
+					\item \textbf{Validate($T_1$):} $accept()$ da bisher keine Transaktion erfolgreich abgeschlossen ist.
+					\item \textbf{Write:} $w_1(x) w_1(y)$
+					\item \textbf{Output:} $r_2(y) r_3(z) a_3$
+					\item \textbf{Validate($T_3$):} $$RS(T_3) = \{x,z\} \cap \{x,y\} = WS(T_1) = \{x\} \neq \emptyset$$
+					\item \textbf{Output:} $r_2(z) a_2$
+					\item \textbf{Validate($T_2$):} $$RS(T_2) = \{x,y,z\} \cap \{x,y\} = WS(T_1) = \{x,y\} \neq \emptyset$$
+					\item $$S_{BOCC} = r_1(x) r_2(x) r_1(y) r_3(x) c_1 w_1(x) w_1(y) r_2(y) r_3(z) a_3 r_2(z) a_2$$
+				\end{itemize}
+				
+	\item \begin{itemize}
+					\item \textbf{Output:} $r_1(x) r_2(x) r_1(y) r_3(x) a_1$
+					\item \textbf{Validate($T_1$):} $$WS(T_1) = \{x,y\} \cap \{x\} = RS^{n^{1}}(T_2) = \{x\} \neq \emptyset$$
+																					$$WS(T_1) = \{x,y\} \cap \{x\} = RS^{n^{1}}(T_3) = \{x\} \neq \emptyset$$
+					
+					\item \textbf{Output:} $r_2(y) r_3(z) c_3$
+					\item \textbf{Validate($T_3$):} $$WS(T_3) = \{z\} \cap \{x,y\} = RS^{n^{2}}(T_2) = \emptyset$$
+					\item \textbf{Write:} $w_3(z)$
+					\item \textbf{Output:} $r_2(z) c_2$
+					\item \textbf{Validate($T_2$):} $accept()$ da keine andere Transaktion zurzeit in der Lesephase ist. (Außerdem ist $T_2$ eine rein lesende Transaktion.)
+					\item $$S_{FOCC} = r_1(x) r_2(x) r_1(y) r_3(x) c_1 w_1(x) w_1(y) r_2(y) r_3(z) c_3 w_3(z) r_2(z) c_2$$
+				\end{itemize}
+\end{enumerate}
 
-\section{2PL, C2PL, Deadlocks}
-Gegeben sei der Schedule $S := w_1(x) r_2(y) w_2(x) w_1(y) c_1 c_2$
-	\begin{enumerate}[label={\alph*)}]
-		\item $ S_{out}^{2PL} = w_1l(x) w_1(x) r_2l(y) r_2(y)$ \lightning Deadlock
-		
-		\item $ S_{out}^{C2PL} = w_1l(x) w_1l(y) w_1(x) w_1u(x) w_1(y) w_1u(y) r_2l(y) w_2l(x) r_2(y) r_2u(y) w_2(x) w_2u(x) c_1 c_2 $
-		
-		\item Ein \textit{konservativer 2PL-Scheduler} ist deadlockfrei, lässt aber weniger Parallelität bei der Auführung von Operationen zu was zu einem Performanzverlust führen kann.
-		
-		\item Sei $S$ ein Schedule und $o_i$ die erste Datenoperation von $S$. Angenommen ein späterer Schritt $p_i(x)$ führt zu einem Deadlock.
-			Die Transaktion $T_j$ besitzt also einen nicht kompatiblen Lock $o_jl(x)$ auf ein Datenobjekt $x$.
-			Dann kann aber $o_i$ nicht die erste Datenoperation des Schedules sein, da $T_i$ keinen Lock $o_il(x)$ besitzt (\textit{C2PL-Scheduler}).
-			Widerspruch zur Annahme \lightning
-			
-			Variante 2: Sei $S$ ein Schedule und sei $trans(S)=\left\{T_1,\dots,T_n\right\}$. Sei 
-			$$\phi := \{1,\dots, n\} \rightarrow \{1,\dots, n\}$$
-			eine Permutation.
-			Angenommen es besteht eine zyklische Deadlockbeziehung $\rightarrow_D$ zwischen den Transaktionen
-			$$T_{\phi(1)} \rightarrow_D T_{\phi(2)} \rightarrow_D \dots \rightarrow_D T_{\phi(n)} \rightarrow_D T_{\phi(1)}$$
-			Sei 
-			$$var(T_i) = \left\{x | x \text{ wird von } op(x) \in op(T_i) \text{ gelesen/geschrieben}\right\}$$
-			Für obige Situation gilt also 
-			$$X = var(T_\phi(1)) \cap var(T_\phi(n)) \neq \emptyset$$
-			O.b.d.A halte $T_{\phi(1)}$ einen Lock $o_{\phi(1)}l(x \in X)$ und $T_{\phi(n)}$ einen Lock
-			$o_{\phi(n)}l(y \in X)$ mit $x \neq y$. Für einen \textit{C2PL-Scheduler} folgt also für die erste Datenoperation der Transaktionen
-			$$first(T_{\phi(n)}) <_S first(T_{\phi(1)})$$ 
-			und 
-			$$first(T_{\phi(1)}) <_S first(T_{\phi(n)})$$ 
-			Widerspruch zur Annahme \lightning
-			
-			Variante 3:
-			Angenommen wir haben einen Schedule erzeugt von einem konservativen 2PL-Scheduler mit Transaktionen $T_1$ und $T_2$ und einem Deadlock. Dann gibt es zwei Datenobjekte $x$ und $y$ wobei $T_1$ den Lock auf $x$ hat und $T_2$
-			auf $y$. O.b.d.A wartet $T_1$ auf $y$ und $T_2$ auf $x$. Sei die erste Datenoperation von $T_1$ vor allen Datenoperationen vor $T_2$.
-			Dann führt $T_1$ zuerst alle Locks aus die er braucht. Das heißt $w_1l(x) und w_1l(y)$. Somit kann $T_2$ seinen Lock auf $y$ gar nicht erhalten bevor $T_1$ fertig ist. Widerspruch zur Annahme. Somit ist jeder C2PL Scheduler deadlockfrei.
-	\end{enumerate}
+\section{MGL (Multiple Granularity Locking)}
+	Angenommen $T_1$ und $T_2$ halten nicht kompatible Sperren $l_1$ und $l_2$ implizit oder explizit auf ein Datenobjekt $A$ in $H$.
+	\begin{description}
+		\item[Fall 1] Sei $A$ die Wurzel von $H$. Dann verhindert die MGL-Verträglichkeitsmatrix die obige Situation \lightning
+		\item[Fall 2] O.b.d.A. gilt $l_1 <_S l_2$ in dem betrachteten Schedule $S$. Dann hält $T_1$ unter anderem auch Intentionssperren auf die Vorgänger
+			des Datenobjekts $A$. Also verhindert wiederum die MGL-Verträglichkeitsmatrix eine implizite oder explizite Sperre $l_2 $auf $A$ \lightning
+	\end{description}
 	
+\section{Phantom Problem}
+\begin{enumerate}[label={\alph*)}]
+		\item \begin{tabularx}{\textwidth}{ | X | X | X |}
+										\hline
+										\textbf{Transaktion 1} & \textbf{Transaktion 2} & \textbf{Output} \\
+										\hline \hline
+										SELECT Count(*) FROM personen WHERE geburtsjahr > 1750 & & 2\\
+										\hline
+										& SELECT Count(*) FROM personen WHERE geburtsjahr > 1750& 2\\
+										\hline
+										INSERT INTO personen VALUES (121212,'Albert Einstein',1879) & & blockiert\\
+										\hline 
+										& INSERT INTO personen VALUES (424242,'Friedrich Schiller',1759) & blockiert\\
+										\hline 
+										& & INSERT von Transaktion 1 wird aufgeführt \\
+										\hline 
+										& & Fehlermeldung bei Transaktion 2 \\
+										\hline
+										SELECT Count(*) FROM personen WHERE geburtsjahr > 1750 & & 3 \\
+										\hline
+										& SELECT Count(*) FROM personen WHERE geburtsjahr > 1750 & blockiert \\
+										\hline
+										commit & & Ausgabe $3$ bei Transaktion 2 \\
+										\hline
+										& commit & \\
+										\hline
+								\end{tabularx}
+		\item Leck mich doch, Arschloch!
+		
+	\item \begin{tabularx}{\textwidth}{ | X | X | X |}
+										\hline
+										\textbf{Transaktion 1} & \textbf{Transaktion 2} & \textbf{Output} \\
+										\hline \hline
+										SELECT Count(*) FROM personen WHERE geburtsjahr > 1750 & & 2\\
+										\hline
+										& SELECT Count(*) FROM personen WHERE geburtsjahr > 1750& 2\\
+										\hline
+										INSERT INTO personen VALUES (121212,'Albert Einstein',1879) & & erfolgreich\\
+										\hline 
+										& INSERT INTO personen VALUES (424242,'Friedrich Schiller',1759) & erfolgreich\\
+										\hline 
+										& & INSERT von Transaktion 1 wird aufgeführt \\
+										\hline 
+										& & Fehlermeldung bei Transaktion \\
+										\hline
+										SELECT Count(*) FROM personen WHERE geburtsjahr > 1750 & & 3 \\
+										\hline
+										& SELECT Count(*) FROM personen WHERE geburtsjahr > 1750 & 3 \\
+										\hline
+										commit & & \\
+										\hline
+										& commit & \\
+										\hline
+								\end{tabularx}
+	\item Leck mich doch, Arschloch!
+\end{enumerate}
 \end{document}

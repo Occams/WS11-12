@@ -1,0 +1,35 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: T_1 -> T_2
+  \draw [->] (53.629bp,33.012bp) .. controls (59.895bp,34.481bp) and (66.712bp,36.081bp)  .. (83.538bp,40.027bp);
+  % Edge: T_2 -> T_3
+  \draw [->] (136.63bp,39.988bp) .. controls (142.89bp,38.519bp) and (149.71bp,36.919bp)  .. (166.54bp,32.973bp);
+  % Edge: T_1 -> T_3
+  \draw [->] (53.308bp,20.851bp) .. controls (62.587bp,18.886bp) and (73.213bp,16.969bp)  .. (83bp,16bp) .. controls (106.88bp,13.635bp) and (113.12bp,13.635bp)  .. (137bp,16bp) .. controls (143.42bp,16.636bp) and (150.21bp,17.68bp)  .. (166.69bp,20.851bp);
+  % Node: T_2
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (110bp,46bp) ellipse (27bp and 27bp);
+  \draw (110bp,46bp) node {$T_2$};
+\end{scope}
+  % Node: T_3
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (193bp,27bp) ellipse (27bp and 27bp);
+  \draw (193bp,27bp) node {$T_3$};
+\end{scope}
+  % Node: T_1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (27bp,27bp) ellipse (27bp and 27bp);
+  \draw (27bp,27bp) node {$T_1$};
+\end{scope}
+%
+\end{tikzpicture}
+

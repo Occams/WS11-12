@@ -1,0 +1,24 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: T_3 -> T_4
+  \draw [->] (54.075bp,27bp) .. controls (60bp,27bp) and (66.4bp,27bp)  .. (82.974bp,27bp);
+  % Node: T_3
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (27bp,27bp) ellipse (27bp and 27bp);
+  \draw (27bp,27bp) node {$T_3$};
+\end{scope}
+  % Node: T_4
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (110bp,27bp) ellipse (27bp and 27bp);
+  \draw (110bp,27bp) node {$T_4$};
+\end{scope}
+%
+\end{tikzpicture}
+
