@@ -1,0 +1,310 @@
+%%%
+% Excercise Template
+%%%
+
+%\listfiles 
+\documentclass[12pt]{scrartcl} 
+\usepackage[ngerman]{babel}
+    
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{graphicx,enumitem,wasysym,multicol,libertine,xcolor,microtype,lipsum,fixltx2e,
+	fancyhdr,vmargin,calc,lastpage,hyperref,listings,lastpage,lipsum,preview,tikz,rotating,multirow,tabularx}
+\usetikzlibrary{snakes,arrows,shapes}
+
+
+% ------------------------------------------
+% -------- xcolor - (Tango)
+% ------------------------------------------
+
+\definecolor{LightButter}{rgb}{0.98,0.91,0.31}
+\definecolor{LightOrange}{rgb}{0.98,0.68,0.24}
+\definecolor{LightChocolate}{rgb}{0.91,0.72,0.43}
+\definecolor{LightChameleon}{rgb}{0.54,0.88,0.20}
+\definecolor{LightSkyBlue}{rgb}{0.45,0.62,0.81}
+\definecolor{LightPlum}{rgb}{0.68,0.50,0.66}
+\definecolor{LightScarletRed}{rgb}{0.93,0.16,0.16}
+\definecolor{Butter}{rgb}{0.93,0.86,0.25}
+\definecolor{Orange}{rgb}{0.96,0.47,0.00}
+\definecolor{Chocolate}{rgb}{0.75,0.49,0.07}
+\definecolor{Chameleon}{rgb}{0.45,0.82,0.09}
+\definecolor{SkyBlue}{rgb}{0.20,0.39,0.64}
+\definecolor{Plum}{rgb}{0.46,0.31,0.48}
+\definecolor{ScarletRed}{rgb}{0.80,0.00,0.00}
+\definecolor{DarkButter}{rgb}{0.77,0.62,0.00}
+\definecolor{DarkOrange}{rgb}{0.80,0.36,0.00}
+\definecolor{DarkChocolate}{rgb}{0.56,0.35,0.01}
+\definecolor{DarkChameleon}{rgb}{0.30,0.60,0.02}
+\definecolor{DarkSkyBlue}{rgb}{0.12,0.29,0.53}
+\definecolor{DarkPlum}{rgb}{0.36,0.21,0.40}
+\definecolor{DarkScarletRed}{rgb}{0.64,0.00,0.00}
+\definecolor{Aluminium1}{rgb}{0.93,0.93,0.92}
+\definecolor{Aluminium2}{rgb}{0.82,0.84,0.81}
+\definecolor{Aluminium3}{rgb}{0.73,0.74,0.71}
+\definecolor{Aluminium4}{rgb}{0.53,0.54,0.52}
+\definecolor{Aluminium5}{rgb}{0.33,0.34,0.32}
+\definecolor{Aluminium6}{rgb}{0.18,0.20,0.21}
+\definecolor{Brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+
+% ------------------------------------------
+% -------- vmargin
+% ------------------------------------------
+
+%\setmarginsrb{hleftmargini}{htopmargini}{hrightmargini}{hbottommargini}%{hheadheighti}{hheadsepi}{hfootheighti}{hfootskipi}
+\setpapersize{A4}
+\setmarginsrb{3cm}{1cm}{3cm}{1cm}{8mm}{4mm}{3mm}{15mm}
+
+% ------------------------------------------
+% -------- listings
+% ------------------------------------------
+ 
+\lstdefinestyle{inline} {
+		basicstyle=\normalsize
+		}
+
+\lstset{
+		breakautoindent=true,
+		breakindent=2em,
+		breaklines=true,
+		tabsize=4,
+		frame=blrt,
+		frameround=tttt,
+		captionpos=b,
+		basicstyle=\scriptsize\ttfamily,
+		keywordstyle={\color{SkyBlue}},
+		%commentstyle={\color{OliveGreen}},
+		stringstyle={\color{OliveGreen}},
+		showspaces=false,
+		%numbers=right,
+		%numberstyle=\scriptsize,
+		%stepnumber=1, 
+		%numbersep=5pt,
+		%showtabs=false
+		prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+		aboveskip={1.5\baselineskip},
+		columns=fixed,
+		upquote=true,
+		extendedchars=true
+		}
+
+
+% ------------------------------------------
+% -------- hyperref
+% ------------------------------------------
+
+\hypersetup{
+	%breaklinks=true,
+	pdfborder={0 0 0},
+	bookmarks=true,         % show bookmarks bar?
+	unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+	pdftoolbar=true,        % show Acrobat’s toolbar?
+	pdfmenubar=true,        % show Acrobat’s menu?
+	pdffitwindow=true,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=DarkSkyBlue           % color of external links
+}
+
+% ------------------------------------------
+% -------- fancyhdr
+% ------------------------------------------
+\fancyheadoffset{\marginparsep+\marginparwidth}
+\fancyhf{}
+\fancyhead[L]{\bfseries{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\bfseries{\thepage\ of \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------------------------------------------
+% -------- pdf specific
+% ------------------------------------------
+
+\pdfcompresslevel=3
+%\pdfimageresolution=300
+%\pdfinfo{
+%/CreationDate (D:2010 09 01 00 00 00) % year(4) month(2) day(2) hour(2) minute(2) second(2)
+%/ModDate      (D:2010 09 01 00 00 00) % modification date
+%}
+
+% ------------------------------------------
+% -------- misc
+% ------------------------------------------
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+\setlength\fboxsep{6pt}
+\setlength\fboxrule{1pt}
+\renewcommand*\oldstylenums[1]{{\fontfamily{fxlj}\selectfont #1}}
+
+% ------------------------------------------
+% -------- hyphenation rules
+% ------------------------------------------
+\hyphenation{}
+
+\begin{document}
+\pagestyle{fancy}
+
+% -- Title
+
+\title{\LARGE Transaktionssysteme -- Blatt 05\\ \large Team Amazonen -- Gruppe 1}
+\author{\large Bastian Huber (51432) \and \large Sebastian Rainer (50882) \and \large Daniel Watzinger (51746)}
+\date{\large\today}
+\maketitle
+
+\section{BFO}
+\begin{enumerate}[label={\alph*)}]
+	\item \begin{itemize}
+					\item \textbf{Initial:} $r-TS(x) = w-TS(x) = r-TS(y) = w-TS(y) = 0$
+					\item \begin{tabularx}{\textwidth}{ | X | X |}
+										\hline
+										\textbf{Output} & \textbf{Statusänderungen} \\
+										\hline \hline
+										$w_1(x)$ & $w-TS(x) = 1$ \\
+										\hline
+										$r_2(y)$ & $r-TS(y) = 2$ \\
+										\hline
+										$r_1(x)$ & $r-TS(x) = 1$ \\
+										\hline
+										$r_2(x)$ & $r-TS(x) = 2$ \\
+										\hline
+										$w_2(y)$ & $w-TS(y) = 2$ \\
+										\hline
+									\end{tabularx}
+					\item $$S_{BFO} = w_1(x) r_2(y) r_1(x) c_1 r_2(x) w_2(y) c_2$$
+				\end{itemize}
+	\item \begin{itemize}
+					\item \textbf{Initial:} $r-TS(x) = w-TS(x) = 0$
+					\item \begin{tabularx}{\textwidth}{ | X | X |}
+										\hline
+										\textbf{Output} & \textbf{Statusänderungen} \\
+										\hline \hline
+										$r_1(x)$ & $r-TS(x) = 1$ \\
+										\hline
+										$r_2(x)$ & $r-TS(x) = 2$ \\
+										\hline
+										$w_3(x)$ & $w-TS(x) = 3$ \\
+										\hline
+										$w_4(x)$ & $w-TS(x) = 4$ \\
+										\hline
+										$w_1(x)$ & $TS(T_1) < w-TS(x) \newline TS(T_1) < r-TS(x) \newline \Rightarrow abort(T_1)$ \\
+										\hline
+										$w_2(x)$ & $TS(T_2) < w-TS(x) \newline \Rightarrow abort(T_2)$ \\
+										\hline
+									\end{tabularx}
+					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) c_1 w_1(x) a_1 w_2(x) a_2 c_3$$
+				\end{itemize}
+\end{enumerate}
+	
+\section{SGT}
+\begin{enumerate}[label={\alph*)}]
+	\item \begin{itemize}
+					\item \textbf{Initial:} $emptyGraph()$
+					\item \begin{tabularx}{\textwidth}{ | X | X |}
+										\hline
+										\textbf{Output} & \textbf{Statusänderungen} \\
+										\hline \hline
+										$w_1(x)$ &  \\
+										\hline
+										$r_2(y)$ &  \\
+										\hline
+										$r_1(x)$ & \\
+										\hline
+										$r_2(x)$ & \\
+										\hline
+										$w_2(y)$ & \\
+										\hline
+									\end{tabularx}
+					\item $$S_{SGT} = w_1(x) r_2(y) r_1(x) c_1 r_2(x) w_2(y) c_2$$
+				\end{itemize}
+	\item \begin{itemize}
+					\item \textbf{Initial:} $r-TS(x) = w-TS(x) = 0$
+					\item \begin{tabularx}{\textwidth}{ | X | X |}
+										\hline
+										\textbf{Output} & \textbf{Statusänderungen} \\
+										\hline \hline
+										$r_1(x)$ & $r-TS(x) = 1$ \\
+										\hline
+										$r_2(x)$ & $r-TS(x) = 2$ \\
+										\hline
+										$w_3(x)$ & $w-TS(x) = 3$ \\
+										\hline
+										$w_4(x)$ & $w-TS(x) = 4$ \\
+										\hline
+										$w_1(x)$ & $TS(T_1) < w-TS(x) \newline TS(T_1) < r-TS(x) \newline \Rightarrow abort(T_1)$ \\
+										\hline
+										$w_2(x)$ & $TS(T_2) < w-TS(x) \newline \Rightarrow abort(T_2)$ \\
+										\hline
+									\end{tabularx}
+					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) c_1 w_1(x) a_1 w_2(x) a_2 c_3$$
+				\end{itemize}
+\end{enumerate}
+	
+\section{SS2PL}
+Gegeben sei folgender Schedule S:
+	$$
+		S :=r_1(y) r_2(y) r_3(y) r_4(z) w_2(y) r_3(x) w_1(x) r_4(x) w_2(x) w_3(z) c_1 c_2 c_3 c_4
+	$$
+	\begin{align*}
+			S_{out}^{SS2PL} = r_1l(y) r_1(y) r_2l(y) r_2(y) r_3l(y) r_3(y) r_4l(z) r_4(z) r_3l(x) r_3(x) r_4l(x) r_4(x) \\
+								c_4 r_4u(z) r_4u(x) w_3l(z) w_3(z) c_3 r_3u(y) r_3u(x) w_3u(z) w_1l(x) w_1(x) c_1 r_1u(y) \\
+								w_1u(x) w_2l(y) w_2(y) w_2l(x) w_2(x) c_3 r_2u(y) w_2u(y) w_2u(x)
+	\end{align*}
+	
+\section{S2PL}
+Gegeben sei folgender Schedule S:
+	$$
+		S :=r_1(x) r_3(z) w_1(y) r_2(y) w_1(x) r_3(x) w_3(z) w_2(z) w_3(x) c_1 c_2 c_3
+	$$
+	\begin{align*}
+			S_{out}^{S2PL} = r_1l(x) r_1(x) r_3l(z) r_3(z) w_1l(y) w_1(y) w_1l(x) w_1(x) r_1u(x) c_1 w_1u(y) w_1u(x) r_2l(y) \\
+											r_2(y) r_3l(x) r_3(x) w_3l(z) w_3(z) w_3l(x) r_3u(x) w_3(x) c_3 w_3u(z) w_3u(x) w_2l(z) r_2u(y) \\
+											w_2(z) c_2 w_2u(z)
+	\end{align*}
+
+\section{2PL, C2PL, Deadlocks}
+Gegeben sei der Schedule $S := w_1(x) r_2(y) w_2(x) w_1(y) c_1 c_2$
+	\begin{enumerate}[label={\alph*)}]
+		\item $ S_{out}^{2PL} = w_1l(x) w_1(x) r_2l(y) r_2(y)$ \lightning Deadlock
+		
+		\item $ S_{out}^{C2PL} = w_1l(x) w_1l(y) w_1(x) w_1u(x) w_1(y) w_1u(y) r_2l(y) w_2l(x) r_2(y) r_2u(y) w_2(x) w_2u(x) c_1 c_2 $
+		
+		\item Ein \textit{konservativer 2PL-Scheduler} ist deadlockfrei, lässt aber weniger Parallelität bei der Auführung von Operationen zu was zu einem Performanzverlust führen kann.
+		
+		\item Sei $S$ ein Schedule und $o_i$ die erste Datenoperation von $S$. Angenommen ein späterer Schritt $p_i(x)$ führt zu einem Deadlock.
+			Die Transaktion $T_j$ besitzt also einen nicht kompatiblen Lock $o_jl(x)$ auf ein Datenobjekt $x$.
+			Dann kann aber $o_i$ nicht die erste Datenoperation des Schedules sein, da $T_i$ keinen Lock $o_il(x)$ besitzt (\textit{C2PL-Scheduler}).
+			Widerspruch zur Annahme \lightning
+			
+			Variante 2: Sei $S$ ein Schedule und sei $trans(S)=\left\{T_1,\dots,T_n\right\}$. Sei 
+			$$\phi := \{1,\dots, n\} \rightarrow \{1,\dots, n\}$$
+			eine Permutation.
+			Angenommen es besteht eine zyklische Deadlockbeziehung $\rightarrow_D$ zwischen den Transaktionen
+			$$T_{\phi(1)} \rightarrow_D T_{\phi(2)} \rightarrow_D \dots \rightarrow_D T_{\phi(n)} \rightarrow_D T_{\phi(1)}$$
+			Sei 
+			$$var(T_i) = \left\{x | x \text{ wird von } op(x) \in op(T_i) \text{ gelesen/geschrieben}\right\}$$
+			Für obige Situation gilt also 
+			$$X = var(T_\phi(1)) \cap var(T_\phi(n)) \neq \emptyset$$
+			O.b.d.A halte $T_{\phi(1)}$ einen Lock $o_{\phi(1)}l(x \in X)$ und $T_{\phi(n)}$ einen Lock
+			$o_{\phi(n)}l(y \in X)$ mit $x \neq y$. Für einen \textit{C2PL-Scheduler} folgt also für die erste Datenoperation der Transaktionen
+			$$first(T_{\phi(n)}) <_S first(T_{\phi(1)})$$ 
+			und 
+			$$first(T_{\phi(1)}) <_S first(T_{\phi(n)})$$ 
+			Widerspruch zur Annahme \lightning
+			
+			Variante 3:
+			Angenommen wir haben einen Schedule erzeugt von einem konservativen 2PL-Scheduler mit Transaktionen $T_1$ und $T_2$ und einem Deadlock. Dann gibt es zwei Datenobjekte $x$ und $y$ wobei $T_1$ den Lock auf $x$ hat und $T_2$
+			auf $y$. O.b.d.A wartet $T_1$ auf $y$ und $T_2$ auf $x$. Sei die erste Datenoperation von $T_1$ vor allen Datenoperationen vor $T_2$.
+			Dann führt $T_1$ zuerst alle Locks aus die er braucht. Das heißt $w_1l(x) und w_1l(y)$. Somit kann $T_2$ seinen Lock auf $y$ gar nicht erhalten bevor $T_1$ fertig ist. Widerspruch zur Annahme. Somit ist jeder C2PL Scheduler deadlockfrei.
+	\end{enumerate}
+	
+\end{document}
