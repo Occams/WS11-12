@@ -201,7 +201,7 @@
 										$w_2(x)$ & $TS(T_2) < w-TS(x) \newline \Rightarrow abort(T_2)$ \\
 										\hline
 									\end{tabularx}
-					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) c_1 w_1(x) a_1 w_2(x) a_2 c_3$$
+					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) w_1(x) a_1 w_2(x) a_2 c_3$$
 				\end{itemize}
 \end{enumerate}
 	
@@ -270,7 +270,7 @@
 					\item \textbf{Validate($T_3$):} $$RS(T_3) = \{x,z\} \cap \{x,y\} = WS(T_1) = \{x\} \neq \emptyset$$
 					\item \textbf{Output:} $r_2(z) a_2$
 					\item \textbf{Validate($T_2$):} $$RS(T_2) = \{x,y,z\} \cap \{x,y\} = WS(T_1) = \{x,y\} \neq \emptyset$$
-					\item $$S_{BOCC} = r_1(x) r_2(x) r_1(y) r_3(x) c_1 w_1(x) w_1(y) r_2(y) r_3(z) a_3 r_2(z) a_2$$
+					\item $$S_{BOCC} = r_1(x) r_2(x) r_1(y) r_3(x) w_1(x) w_1(y) c_1 r_2(y) r_3(z) a_3 r_2(z) a_2$$
 				\end{itemize}
 				
 	\item \begin{itemize}
@@ -283,7 +283,7 @@
 					\item \textbf{Write:} $w_3(z)$
 					\item \textbf{Output:} $r_2(z) c_2$
 					\item \textbf{Validate($T_2$):} $accept()$ da keine andere Transaktion zurzeit in der Lesephase ist. (Außerdem ist $T_2$ eine rein lesende Transaktion.)
-					\item $$S_{FOCC} = r_1(x) r_2(x) r_1(y) r_3(x) c_1 w_1(x) w_1(y) r_2(y) r_3(z) c_3 w_3(z) r_2(z) c_2$$
+					\item $$S_{FOCC} = r_1(x) r_2(x) r_1(y) r_3(x) w_1(x) w_1(y) a_1 r_2(y) r_3(z) c_3 w_3(z) r_2(z) c_2$$
 				\end{itemize}
 \end{enumerate}
 
