@@ -7,3 +7,8 @@ Praktikum*
 *.pdf
 MMDB
 REFRESH
+*.zip
+.svn
+.settings
+bin
+.plugins
