@@ -201,7 +201,7 @@
 										$w_2(x)$ & $TS(T_2) < w-TS(x) \newline \Rightarrow abort(T_2)$ \\
 										\hline
 									\end{tabularx}
-					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) w_1(x) a_1 w_2(x) a_2 c_3$$
+					\item $$S_{BFO} = r_1(x) r_2(x) w_3(x) w_4(x) (w_1(x)) a_1 (w_2(x)) a_2 c_3$$
 				\end{itemize}
 \end{enumerate}
 	
@@ -256,7 +256,7 @@
 					\item \textbf{Statusänderungen}: \input{graph_2_b_9}
 								$\xrightarrow{Garbage Collection} emptyGraph()$
 								
-					\item $$S_{SGT} = r_1(x) r_2(x) w_3(x) w_4(x) w_1(x) a_1 w_2(x) a_2 c_3 c_4$$
+					\item $$S_{SGT} = r_1(x) r_2(x) w_3(x) w_4(x) (w_1(x)) a_1 (w_2(x)) a_2 c_3 c_4$$
 				\end{itemize}
 \end{enumerate}
 	
@@ -322,7 +322,7 @@
 										& commit & \\
 										\hline
 								\end{tabularx}
-		\item Leck mich doch, Arschloch!
+		\item DB2 blockiert einfach bei konkurrentem Schreiben auf den Tabellen.
 		
 	\item \begin{tabularx}{\textwidth}{ | X | X | X |}
 										\hline
@@ -349,6 +349,6 @@
 										& commit & \\
 										\hline
 								\end{tabularx}
-	\item Leck mich doch, Arschloch!
+	\item PostgreSQL lässt letztendlich jede Transaktion auf der Tabelle arbeiten, die zu Beginn der Transaktion vorhanden war.
 \end{enumerate}
 \end{document}
